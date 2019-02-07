@@ -1,14 +1,18 @@
 ﻿<Page
-    x:Class="FirstUWPApp.HomePage"
+    x:Class="FirstUWPApp.SupportPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FirstUWPApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:FirstUWPApp.Views.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#ff8000">
-        <TextBlock FontSize="24" Text="Welcome to Home page" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Page.DataContext>
+        <local:SupportVM/>
+    </Page.DataContext>
+    
+    <Grid Background="#C8A2C8">
+        <TextBlock FontSize="24" Text="{Binding MainText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>
