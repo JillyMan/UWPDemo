@@ -8,6 +8,6 @@
     DataContext="{Binding HomeViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid Background="#ff8000">
-        <TextBlock Text="{ Binding MainText, UpdateSourceTrigger=PropertyChanged }"/>
+        <TextBlock Style="{ StaticResource ContentTextBlock}" Text="{ Binding MainText, UpdateSourceTrigger=PropertyChanged }"/>
     </Grid>
 </Page>
