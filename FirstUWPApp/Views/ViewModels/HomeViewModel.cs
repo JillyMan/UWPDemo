@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-    public class HomeVM : AbstractVM
+    public class HomeViewModel : AbstractViewModel
     {
-        public HomeVM()
+        public HomeViewModel()
         {
             MainText = "Welcome to Home page";//(string)App.Current.Resources["TitleHomePage"];
         }

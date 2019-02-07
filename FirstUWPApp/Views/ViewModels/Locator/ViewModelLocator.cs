@@ -9,24 +9,24 @@ namespace FirstUWPApp.Views.ViewModel.Locator
 {
     public class ViewModelLocator
     {
-        public HomeVM HomeVM
-        {
-            get { return new HomeVM(); }
+        public HomeViewModel HomeViewModel
+		{
+            get { return new HomeViewModel(); }
         }
 
-        public ContainerVM ContainerVM
-        {
-            get { return new ContainerVM(); }
+        public ContainerViewModel ContainerViewModel
+		{
+            get { return new ContainerViewModel(); }
         }
 
-        public SupportVM SupportVM
-        {
-            get { return new SupportVM(); }
+        public SupportViewModel SupportViewModel
+		{
+            get { return new SupportViewModel(); }
         }
 
-        public SettingVM SettingVM
-        {
-            get { return new SettingVM(); }
+        public SettingViewModel SettingViewModel
+		{
+            get { return new SettingViewModel(); }
         }
     }
 }

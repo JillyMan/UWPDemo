@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-    public class SupportVM : AbstractVM
+    public class SupportViewModel : AbstractViewModel
     {
-        public SupportVM()
+        public SupportViewModel()
         {
             MainText = "Welcomet to Support page";//(string)App.Current.Resources["TitleSupportPage"];
         }

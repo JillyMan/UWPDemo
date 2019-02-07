@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:FirstUWPApp.Views.ViewModels"
-    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ContainerVM}"
+    DataContext="{Binding ContainerViewModel, Source={StaticResource ViewModelLocator}}"
     mc:Ignorable="d">
 
     <Grid>

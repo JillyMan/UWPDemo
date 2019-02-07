@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-    public class ContainerVM : AbstractVM
+    public class ContainerViewModel : AbstractViewModel
     {
         private string _home;
         private string _setting;
@@ -19,7 +19,7 @@ namespace FirstUWPApp.Views.ViewModels
             set
             {
                 _home = value;
-                OnPropertyChanged("Home");
+                OnPropertyChanged(nameof(Home));
             }
         }
 
@@ -29,7 +29,7 @@ namespace FirstUWPApp.Views.ViewModels
             set
             {
                 _setting = value;
-                OnPropertyChanged("Setting");
+                OnPropertyChanged(nameof(Setting));
             }
         }
 
@@ -39,11 +39,11 @@ namespace FirstUWPApp.Views.ViewModels
             set
             {
                 _support = value;
-                OnPropertyChanged("Support");
+                OnPropertyChanged(nameof(Support));
             }
         }
 
-        public ContainerVM()
+        public ContainerViewModel()
         {
             MainText = "UWP Application";
             Home = "Home";

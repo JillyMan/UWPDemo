@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-    public class SettingVM : AbstractVM
+    public class SettingViewModel : AbstractViewModel
     {
-        public SettingVM()
+        public SettingViewModel()
         {
             MainText = "Welcome to Setting page";//(string)App.Current.Resources["TitleSettingPage"];
         }
