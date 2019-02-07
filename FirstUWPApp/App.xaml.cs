@@ -70,5 +70,7 @@ namespace FirstUWPApp
             var deferral = e.SuspendingOperation.GetDeferral();
             deferral.Complete();
         }
+
+
     }
 }

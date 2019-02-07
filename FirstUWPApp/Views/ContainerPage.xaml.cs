@@ -15,10 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FirstUWPApp
 {
-    // Use mvvm model, 
-    // setup all value 
     // ( api service for get film, info)
-    // how dinamic contains style 
     public sealed partial class ContainerPage : Page
     {
         public ContainerPage()
@@ -29,7 +26,7 @@ namespace FirstUWPApp
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
-            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
+            SplitPanel.IsPaneOpen = !SplitPanel.IsPaneOpen;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,7 +43,7 @@ namespace FirstUWPApp
             {
                 ChildFrame.Navigate(typeof(SupportPage));
             }
-            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
+            SplitPanel.IsPaneOpen = !SplitPanel.IsPaneOpen;
         }
     }
 }

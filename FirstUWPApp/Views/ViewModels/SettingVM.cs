@@ -11,7 +11,7 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public SettingVM()
         {
-            _mainText = "Welcome to mvvm Setting page";        
+            MainText = "Welcome to mvvm Setting page";        
         }
     }
 }

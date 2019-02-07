@@ -2,11 +2,14 @@
     x:Class="FirstUWPApp.ContainerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FirstUWPApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:muxm="using:Microsoft.UI.Xaml.Media"
+    xmlns:local="using:FirstUWPApp.Views.ViewModels"
     mc:Ignorable="d">
+
+    <Page.DataContext>
+        <local:ContainerVM/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,31 +18,24 @@
         </Grid.RowDefinitions>
        <RelativePanel>
             <Button x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True"
-                    FontFamily="Segoe MDL2 Assets" FontSize="36"
-                    Content="&#xE700;" Click="HamburgerButton_Click"/>
-            <TextBlock Name="TitleTextBlock" Text="UWP Application" RelativePanel.RightOf="HamburgerButton"
-                       FontSize="28" FontWeight="Bold" Margin="30, 5, 0, 0" />
+                    Style="{StaticResource HamburgerButton}"
+                    Click="HamburgerButton_Click"/>
+            
+            <TextBlock Name="TitleTextBlock" Text="{Binding MainText, UpdateSourceTrigger=PropertyChanged}" RelativePanel.RightOf="HamburgerButton"
+                       Style="{StaticResource TitleTextBlock}"/>
         </RelativePanel>
 
-        <!--<StackPanel Orientation="Horizontal">
-            <Button x:Name="HamburgerButton" RelativePanel.AlignLeftWithPanel="True"
-                    FontFamily="Segoe MDL2 Assets" FontSize="36"
-                    Content="&#xE700;" Click="HamburgerButton_Click"/>
-            <TextBlock Name="TitleTextBlock" Text="UWP Application" RelativePanel.RightOf="HamburgerButton"
-                       FontSize="28" FontWeight="Bold" Margin="30 5 0 0" />
-        </StackPanel>-->
-
-        <SplitView Name="mySplitView" Grid.Row="1" OpenPaneLength="200">
+        <SplitView Name="SplitPanel" Grid.Row="1" OpenPaneLength="150">
             <SplitView.Pane>
                 <ListBox SelectionMode="Single" SelectionChanged="ListBox_SelectionChanged" HorizontalAlignment="Left">
                     <ListBoxItem Name="Home">
-                        <TextBlock FontSize="24" Text="Home" />
+                        <TextBlock Text="{Binding Home, UpdateSourceTrigger=PropertyChanged}" />
                     </ListBoxItem>
                     <ListBoxItem Name="Setting">
-                        <TextBlock FontSize="24" Text="Setting" />
+                        <TextBlock Text="{Binding Setting, UpdateSourceTrigger=PropertyChanged}" />
                     </ListBoxItem>
                     <ListBoxItem Name="Support">
-                        <TextBlock FontSize="24" Text="Support" />
+                        <TextBlock Text="{Binding Support, UpdateSourceTrigger=PropertyChanged}" />
                     </ListBoxItem>
                 </ListBox>
             </SplitView.Pane>

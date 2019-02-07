@@ -5,14 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:FirstUWPApp.Views.ViewModels"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" >
 
     <Page.DataContext>
         <local:SupportVM/>
     </Page.DataContext>
     
     <Grid Background="#C8A2C8">
-        <TextBlock FontSize="24" Text="{Binding MainText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding MainText, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Page>

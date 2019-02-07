@@ -126,6 +126,7 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ViewModels\Locator\ViewModelLocator.cs" />
     <Compile Include="Views\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
@@ -133,6 +134,7 @@
       <DependentUpon>SupportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewModels\AbstractVM.cs" />
+    <Compile Include="Views\ViewModels\ContainerVM.cs" />
     <Compile Include="Views\ViewModels\HomeVM.cs" />
     <Compile Include="Views\ViewModels\SettingVM.cs" />
     <Compile Include="Views\ViewModels\SupportVM.cs" />
@@ -142,6 +144,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="FirstUWPApp_TemporaryKey.pfx" />
+    <PRIResource Include="Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -158,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\LocatorDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\TitleResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ContainerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +195,7 @@
       <Version>6.2.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

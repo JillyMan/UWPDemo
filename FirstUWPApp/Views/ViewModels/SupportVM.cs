@@ -10,7 +10,7 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public SupportVM()
         {
-            _mainText = "Welcome to Support mvvn Page";
+            MainText = "Welcome to Support mvvn Page";
         }
     }
 }

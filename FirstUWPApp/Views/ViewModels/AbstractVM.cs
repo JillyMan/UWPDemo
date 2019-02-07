@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-    public class AbstractVM : INotifyPropertyChanged
+    public abstract class AbstractVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected string _mainText;
+        private string _mainText;
         public string MainText
         {
             get { return _mainText; }

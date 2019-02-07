@@ -1,8 +1,17 @@
 ﻿<Application
     x:Class="FirstUWPApp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FirstUWPApp">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Styles/Style.xaml"/>
+                <ResourceDictionary Source="Resources/TitleResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>   
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>
     
     
