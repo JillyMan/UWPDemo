@@ -11,7 +11,7 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public HomeVM()
         {
-            MainText = "Welcome to mvvm Home page";
+            MainText = "Welcome to Home page";//(string)App.Current.Resources["TitleHomePage"];
         }
     }
 }

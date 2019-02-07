@@ -15,7 +15,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FirstUWPApp
 {
-    // ( api service for get film, info)
     public sealed partial class ContainerPage : Page
     {
         public ContainerPage()

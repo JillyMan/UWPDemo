@@ -5,11 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:FirstUWPApp.Views.ViewModels"
-    mc:Ignorable="d" >
-
-    <Page.DataContext>
-        <local:SupportVM/>
-    </Page.DataContext>
+    mc:Ignorable="d" 
+    DataContext="{Binding SupportVM, Source={StaticResource ViewModelLocator}}">
     
     <Grid Background="#C8A2C8">
         <TextBlock Text="{Binding MainText, UpdateSourceTrigger=PropertyChanged}" />

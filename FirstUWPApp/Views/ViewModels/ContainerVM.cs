@@ -45,13 +45,10 @@ namespace FirstUWPApp.Views.ViewModels
 
         public ContainerVM()
         {
-            //var resources = new Windows.ApplicationModel.Resources.ResourceLoader("Resources");
-            //MainText = resources.GetString("TitleMainPage");
             MainText = "UWP Application";
             Home = "Home";
             Setting = "Setting";
             Support = "Support";
-
         }
     }
 }

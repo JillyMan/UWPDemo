@@ -1,12 +1,11 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:sys="using:System"
-    xmlns:local="using:FirstUWPApp.Resources">
+    xmlns:sys="using:System">
 
-    <sys:String x:Key="TitleMainPage">UWP Application</sys:String>
-    <sys:String x:Key="TitleHomePage">Welcome to mvvm Home page</sys:String>
-    <sys:String x:Key="TitleSupportPage">Welcome to mvvm Support page</sys:String>
-    <sys:String x:Key="TitleSettingPage">Welcome to mvvm Setting page</sys:String>
+    <sys:String x:Key = "TitleMainPage">UWP Application</sys:String>
+    <sys:String x:Key = "TitleHomePage">Welcome to mvvm Home page</sys:String>
+    <sys:String x:Key = "TitleSupportPage">Welcome to mvvm Support page</sys:String>
+    <sys:String x:Key = "TitleSettingPage">Welcome to mvvm Setting page</sys:String>
 
 </ResourceDictionary>

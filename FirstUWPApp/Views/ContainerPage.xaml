@@ -5,11 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:FirstUWPApp.Views.ViewModels"
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ContainerVM}"
     mc:Ignorable="d">
-
-    <Page.DataContext>
-        <local:ContainerVM/>
-    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -40,7 +37,7 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame Name="ChildFrame" />
+                <Frame Name="ChildFrame"/>
             </SplitView.Content>
         </SplitView>
     </Grid>
