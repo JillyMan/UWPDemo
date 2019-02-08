@@ -15,17 +15,17 @@ namespace FirstUWPApp.Views.ViewModels
         private FindFilmService ffs = new FindFilmService("http://www.omdbapi.com/");
         private FilmInfo filmInfo;
 
-        private string _imageUri;
+        private string _imagesUri;
 
         public string Image
         {
-            get 
+            get
             {
-                return _imageUri;
+                return _imagesUri;
             }
             set
             {
-                _imageUri = value;
+                _imagesUri = value;
                 OnPropertyChanged(nameof(Image));
             }
         }

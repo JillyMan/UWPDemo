@@ -28,13 +28,16 @@
             <SplitView.Pane>
                 <ListBox SelectionMode="Single" SelectionChanged="ListBox_SelectionChanged" HorizontalAlignment="Left">
                     <ListBoxItem Name="Home">
-                        <TextBlock Text="{Binding Home, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock x:Uid="ButtonHome"  
+                                   Text="" />
                     </ListBoxItem>
                     <ListBoxItem Name="Setting">
-                        <TextBlock Text="{Binding Setting, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock x:Uid="ButtonSetting" 
+                                   Text="" />
                     </ListBoxItem>
                     <ListBoxItem Name="Support">
-                        <TextBlock Text="{Binding Support, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock x:Uid="ButtonSupport"
+                                   Text="" />
                     </ListBoxItem>
                 </ListBox>
             </SplitView.Pane>

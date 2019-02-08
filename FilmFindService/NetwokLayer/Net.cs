@@ -21,18 +21,5 @@ namespace FilmFindService.NetwokLayer
             }
             return result;
         }
-
-        public async Task<byte[]> GetBytes(string url)
-        {
-            byte[] result;
-            using (var httpClient = new HttpClient())
-            {
-                using (var responce = await httpClient.GetAsync(url))
-                {
-                    result = await responce.Content.ReadAsByteArrayAsync();
-                }
-            }
-            return result;
-        }
     }
 }

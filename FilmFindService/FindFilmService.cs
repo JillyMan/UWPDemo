@@ -11,11 +11,11 @@ namespace FilmFindService
     public class FindFilmService
     {
         private Net net = new Net();
-        private readonly string baseUri;
+        private string BaseUri { get; set; }
 
         public FindFilmService(string baseUri)
         {
-            this.baseUri = baseUri;
+            this.BaseUri = baseUri;
         }
 
         public async Task<FilmInfo> GetFilms(string filmName)
@@ -28,7 +28,7 @@ namespace FilmFindService
             filmName = string.Join("+", filmName.Split(' '));
 
             StringBuilder builder = new StringBuilder();
-            builder.Append(baseUri);
+            builder.Append(BaseUri);
             builder.Append("?t=");
             builder.Append(filmName);
             builder.Append("&plot=full");
