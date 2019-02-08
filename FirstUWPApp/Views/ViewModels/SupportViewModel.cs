@@ -10,7 +10,6 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public SupportViewModel()
         {
-            MainText = "Welcomet to Support page";//(string)App.Current.Resources["TitleSupportPage"];
         }
     }
 }

@@ -45,7 +45,6 @@ namespace FirstUWPApp.Views.ViewModels
 
         public ContainerViewModel()
         {
-            MainText = "UWP Application";
             Home = "Home";
             Setting = "Setting";
             Support = "Support";

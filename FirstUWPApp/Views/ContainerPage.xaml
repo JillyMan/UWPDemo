@@ -18,7 +18,9 @@
                     Style="{StaticResource HamburgerButton}"
                     Click="HamburgerButton_Click"/>
             
-            <TextBlock Name="TitleTextBlock" Text="{Binding MainText, UpdateSourceTrigger=PropertyChanged}" RelativePanel.RightOf="HamburgerButton"
+            <TextBlock x:Uid="TextBlockMain" 
+                       Text="" 
+                       RelativePanel.RightOf="HamburgerButton"
                        Style="{StaticResource TitleTextBlock}"/>
         </RelativePanel>
 

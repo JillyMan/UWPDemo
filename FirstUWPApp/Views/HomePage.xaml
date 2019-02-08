@@ -6,8 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     DataContext="{Binding HomeViewModel, Source={StaticResource ViewModelLocator}}">
+        
+    <Grid Background="#000000">
+        <Image Source ="{Binding Image}" Stretch="None"/>
 
-    <Grid Background="#ff8000">
-        <TextBlock Style="{ StaticResource ContentTextBlock}" Text="{ Binding MainText, UpdateSourceTrigger=PropertyChanged }"/>
+        <TextBlock x:Uid="TextBlockHome" Style="{ StaticResource ContentTextBlock}" 
+                   Text=""/>
     </Grid>
 </Page>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using FilmFindService;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -33,6 +34,10 @@ namespace FirstUWPApp
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+          //  FindFilmService f = new FindFilmService();
+         //   string str = f.GetFilms("Avengers: Infinity War").Result;
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)

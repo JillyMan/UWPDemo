@@ -11,17 +11,6 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _mainText;
-        public string MainText
-        {
-            get { return _mainText; }
-            set
-            {
-                _mainText = value;
-                OnPropertyChanged(nameof(MainText));
-            }
-        }
-
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

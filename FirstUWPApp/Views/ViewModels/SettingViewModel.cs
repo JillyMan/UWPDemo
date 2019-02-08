@@ -11,7 +11,6 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public SettingViewModel()
         {
-            MainText = "Welcome to Setting page";//(string)App.Current.Resources["TitleSettingPage"];
         }
     }
 }
