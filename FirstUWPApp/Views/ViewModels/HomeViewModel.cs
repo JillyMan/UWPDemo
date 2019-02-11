@@ -6,17 +6,22 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FilmFindService;
+using FilmFindService.Interfaces;
+using FilmsDataAccessLayer.Models;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace FirstUWPApp.Views.ViewModels
 {
 	public class HomeViewModel : AbstractViewModel
 	{
-        private FindFilmService ffs = new FindFilmService("http://www.omdbapi.com/");
+        //TODO: hard code of link, not cool :(
+        private IFilmsService ffs = new FindFilmService("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
+        private FilmInfo filmInfo2;
         private FilmInfo filmInfo;
 
-        private string _imagesUri;
+        public IList<string> UriImages = new List<string>();
 
+        private string _imagesUri;
         public string Image
         {
             get
@@ -30,15 +35,35 @@ namespace FirstUWPApp.Views.ViewModels
             }
         }
 
-		public HomeViewModel()
+        private string _imagesUri2;
+        public string Image2
+        {
+            get
+            {
+                return _imagesUri2;
+            }
+            set
+            {
+                _imagesUri2 = value;
+                OnPropertyChanged(nameof(Image2));
+            }
+        }
+
+        public HomeViewModel()
         {
             Init();
         }
 
         private async void Init()
         {
-            filmInfo = await ffs.GetFilms("Avengers Infinity War");
+            filmInfo = await ffs.GetFilm("Aquaman");
+            filmInfo2 = await ffs.GetFilm("Logan");
+
             Image = filmInfo.Poster;
+            Image2 = filmInfo2.Poster;
+
+            //UriImages.Add(filmInfo.Poster);
+            //UriImages.Add(filmInfo2.Poster);
         }
     }
 }

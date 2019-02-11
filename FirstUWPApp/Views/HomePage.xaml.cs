@@ -21,9 +21,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FirstUWPApp
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class HomePage : Page
     {
         public HomePage()
@@ -31,16 +28,19 @@ namespace FirstUWPApp
             this.InitializeComponent();
             Init();
         }
+
         private void Init()
         {
-            //HomeViewModel viewmodel = DataContext as HomeViewModel;
-            //if(viewmodel != null)
-            //{
-            //    foreach(string imageUri in viewmodel.Images)
-            //    {
-            //       //FilmsPosters.Items.Add(new BitmapImage(new Uri(imageUri)));
-            //    }
-            //}
+            var imageStyle = Resources["ImagePos"] as Style;
+            var homeViewModel = DataContext as HomeViewModel;
+
+            foreach(var uriImage in homeViewModel.UriImages)
+            {
+                var image = new Image();
+                image.Source = new BitmapImage(new Uri(uriImage));
+                image.Style = imageStyle;
+                containerImages.Children.Add(image);
+            }
         }
     }
 }

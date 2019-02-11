@@ -10,16 +10,19 @@
     <Page.Resources>
         <Style x:Key="ImagePos" TargetType="Image">
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+            <Setter Property="Stretch" Value="None"/>
         </Style>
         <Style TargetType="StackPanel">
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
         </Style>
     </Page.Resources>
         
     <Grid Background="#000000">
-        <StackPanel>
+        <StackPanel x:Name="containerImages">
             <Image Style="{StaticResource ImagePos}" Source ="{Binding Image}" Stretch="None"/>
+            <Image Style="{StaticResource ImagePos}" Source ="{Binding Image2}" Stretch="None"/>
         </StackPanel>
 
         <TextBlock x:Uid="TextBlockHome" Style="{ StaticResource ContentTextBlock}" 

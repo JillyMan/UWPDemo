@@ -3,41 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using FilmFindService.NetwokLayer;
+using FilmsDataAccessLayer.Models;
+using FilmsDataAccessLayer;
+using FilmFindService.Interfaces;
+using FilmsDataAccessLayer.Networking;
+
+using FilmFindService.Util;
 
 namespace FilmFindService
 { 
-    public class FindFilmService
+    public class FindFilmService : IFilmsService
     {
-        private Net net = new Net();
+
         private string BaseUri { get; set; }
+
+        private INet net = new NetHttp();
+        private IRepository<FilmInfo> filmsCache = new FilmRepository("StorageFilms.txt");
 
         public FindFilmService(string baseUri)
         {
-            this.BaseUri = baseUri;
+            BaseUri = baseUri;
         }
 
-        public async Task<FilmInfo> GetFilms(string filmName)
+        public async Task<FilmInfo> GetFilm(string filmName)
         {
             if(filmName == null)
             {
                 throw new ArgumentNullException();
             }
 
-            filmName = string.Join("+", filmName.Split(' '));
+            FilmInfo film = (await filmsCache.Get())?
+                    .Where(x => x.Title.PartialCompare(filmName))
+                    .FirstOrDefault();
+            
+            if (film == null)
+            {
+                if (string.IsNullOrEmpty(BaseUri))
+                {
+                    throw new ArgumentNullException("Invalid: " + nameof(BaseUri));
+                }
 
-            StringBuilder builder = new StringBuilder();
-            builder.Append(BaseUri);
-            builder.Append("?t=");
-            builder.Append(filmName);
-            builder.Append("&plot=full");
-            builder.Append("&apikey=b5a32870");
+                string newFilmName = string.Join("+", filmName.Split(' '));
+                film = await net.GetObject<FilmInfo>(BaseUri + newFilmName);
 
-            string jsonResult = await net.GetJson(builder.ToString());
-            var filmInfo = JsonConvert.DeserializeObject<FilmInfo>(jsonResult);
+                if (film != null)
+                {
+                    filmsCache.Insert(film);
+                }
+            }
+            return film;
+        }
 
-            return filmInfo;
-        }       
+        public async Task<IEnumerable<FilmInfo>> GetLookedFilms()
+        {
+            return await filmsCache.Get();
+        }
     }
 }

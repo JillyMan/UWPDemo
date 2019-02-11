@@ -120,10 +120,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FilmInfo.cs" />
     <Compile Include="FindFilmService.cs" />
-    <Compile Include="NetwokLayer\Net.cs" />
+    <Compile Include="Interfaces\IFilmsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\StringUtil.cs" />
     <EmbeddedResource Include="Properties\FilmFindService.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +133,12 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FilmsDataAccessLayer\FilmsDataAccessLayer.csproj">
+      <Project>{2fe5f713-4aae-4223-a8b9-ea65b282124e}</Project>
+      <Name>FilmsDataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
