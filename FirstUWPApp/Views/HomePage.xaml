@@ -20,10 +20,16 @@
     </Page.Resources>
         
     <Grid Background="#000000">
-        <StackPanel x:Name="containerImages">
-            <Image Style="{StaticResource ImagePos}" Source ="{Binding Image}" Stretch="None"/>
-            <Image Style="{StaticResource ImagePos}" Source ="{Binding Image2}" Stretch="None"/>
-        </StackPanel>
+        <ScrollViewer Ori>
+            <StackPanel x:Name="containerImages">
+                <Image Style="{StaticResource ImagePos}" Source ="{Binding Image}"/>
+                <Image Style="{StaticResource ImagePos}" Source ="{Binding Image2}"/>
+                <Image Style="{StaticResource ImagePos}" Source ="{Binding Image}"/>
+                <Image Style="{StaticResource ImagePos}" Source ="{Binding Image2}"/>
+                <Image Style="{StaticResource ImagePos}" Source ="{Binding Image}"/>
+                <Image Style="{StaticResource ImagePos}" Source ="{Binding Image2}"/>
+            </StackPanel>
+        </ScrollViewer>
 
         <TextBlock x:Uid="TextBlockHome" Style="{ StaticResource ContentTextBlock}" 
                    Text="{}"/>

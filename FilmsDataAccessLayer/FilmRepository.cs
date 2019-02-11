@@ -17,6 +17,7 @@ namespace FilmsDataAccessLayer
 
         public FilmRepository(string fileName)
         {
+            //TODO: Go to resources
             FileName = "ms-appdata:///Data/" + fileName;
         }
 
@@ -55,9 +56,9 @@ namespace FilmsDataAccessLayer
 
         private async Task<StorageFile> GetStorage()
         {
+            //TODO: Go to resources
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("StorageFilms.txt");
-
             return storageFile;
         }
     }
