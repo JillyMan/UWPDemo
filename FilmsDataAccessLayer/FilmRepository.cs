@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Threading.Tasks;
 using FilmsDataAccessLayer.Models;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Windows.Storage;
 
@@ -13,14 +9,6 @@ namespace FilmsDataAccessLayer
 {
     public class FilmRepository : IRepository<FilmInfo>
     {
-        public string FileName { get; }
-
-        public FilmRepository(string fileName)
-        {
-            //TODO: Go to resources
-            FileName = "ms-appdata:///Data/" + fileName;
-        }
-
         public async Task<IEnumerable<FilmInfo>> Get()
         {
             var store = await GetStorage();

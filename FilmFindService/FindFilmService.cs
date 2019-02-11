@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FilmsDataAccessLayer.Models;
 using FilmsDataAccessLayer;
 using FilmFindService.Interfaces;
 using FilmsDataAccessLayer.Networking;
-
 using FilmFindService.Util;
 
 namespace FilmFindService
 { 
     public class FindFilmService : IFilmsService
     {
-
         private string BaseUri { get; set; }
 
         private INet net = new NetHttp();
-        private IRepository<FilmInfo> filmsCache = new FilmRepository("StorageFilms.txt");
+        private IRepository<FilmInfo> filmsCache = new FilmRepository();
 
         public FindFilmService(string baseUri)
         {
@@ -36,13 +33,8 @@ namespace FilmFindService
                     .Where(x => x.Title.PartialCompare(filmName))
                     .FirstOrDefault();
             
-            if (film == null)
+            if (film == null && !string.IsNullOrEmpty(BaseUri))
             {
-                if (string.IsNullOrEmpty(BaseUri))
-                {
-                    throw new ArgumentNullException("Invalid: " + nameof(BaseUri));
-                }
-
                 string newFilmName = string.Join("+", filmName.Split(' '));
                 film = await net.GetObject<FilmInfo>(BaseUri + newFilmName);
 
@@ -51,7 +43,8 @@ namespace FilmFindService
                     filmsCache.Insert(film);
                 }
             }
-            return film;
+
+			return film;
         }
 
         public async Task<IEnumerable<FilmInfo>> GetLookedFilms()
