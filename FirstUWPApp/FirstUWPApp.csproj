@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppConfig\NinjectModules\FilmServiceModule.cs" />
+    <Compile Include="AppConfig\NinjectModules\ViewModelsModules.cs" />
     <Compile Include="Views\ContainerPage.xaml.cs">
       <DependentUpon>ContainerPage.xaml</DependentUpon>
     </Compile>
@@ -194,6 +196,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Ninject.PCL111">
+      <Version>1.0.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

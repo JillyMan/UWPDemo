@@ -9,6 +9,7 @@ using FilmFindService;
 using FilmFindService.Interfaces;
 using FilmFindService.Models;
 using FilmsDataAccessLayer.Models;
+using Ninject;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace FirstUWPApp.Views.ViewModels
@@ -16,7 +17,9 @@ namespace FirstUWPApp.Views.ViewModels
 	public class HomeViewModel : AbstractViewModel
 	{
         //TODO: hard code of link, not cool :(
-        private IFilmsService ffs = new FindFilmService("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
+        [Inject]
+        public IFilmsService FilmService { private get; set; }// = new FindFilmService("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
+
         private FilmInfoDTO filmInfo2;
         private FilmInfoDTO filmInfo;
 
@@ -57,8 +60,8 @@ namespace FirstUWPApp.Views.ViewModels
 
         private async void Init()
         {
-            filmInfo = await ffs.GetFilm("Logan");
-            filmInfo2 = await ffs.GetFilm("Avatar");
+            filmInfo = await FilmService.GetFilm("Logan");
+            filmInfo2 = await FilmService.GetFilm("Avatar");
 
             Image = filmInfo.Poster;
             Image2 = filmInfo2.Poster;

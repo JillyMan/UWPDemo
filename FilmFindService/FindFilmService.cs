@@ -10,16 +10,19 @@ using FilmFindService.Networking;
 using FilmFindService.Models;
 
 namespace FilmFindService
-{ 
+{
+    //TODO: May be create request builder ?!!!!
     public class FindFilmService : IFilmsService
     {
-        private string BaseUri { get; set; }
+        private INet net;
+        private IRepository<FilmInfo> filmsCache;
 
-        private INet net = new NetHttp();
-        private IRepository<FilmInfo> filmsCache = new FilmRepository("StorageFilms.txt");
+        public string BaseUri { get; }
 
-        public FindFilmService(string baseUri)
+        public FindFilmService(INet net, IRepository<FilmInfo> filmsCache, string baseUri)
         {
+            this.net = net;
+            this.filmsCache = filmsCache;
             BaseUri = baseUri;
         }
 
@@ -45,13 +48,13 @@ namespace FilmFindService
 
                 if (filmDAL != null)
                 {
-                    filmsCache.Insert(filmDAL);
+                    filmsCache.Insert(filmDAL);                    
                     filmDTO = createDTO(filmDAL); 
                 }
             }
             else
             {
-                //TODO: Refactor copy-past
+                //TODO: May be -> Refactor copy-past
                 filmDTO = createDTO(filmDAL);
             }
 
