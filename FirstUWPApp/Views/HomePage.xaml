@@ -20,7 +20,7 @@
     </Page.Resources>
         
     <Grid Background="#000000">
-        <ScrollViewer Ori>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible">
             <StackPanel x:Name="containerImages">
                 <Image Style="{StaticResource ImagePos}" Source ="{Binding Image}"/>
                 <Image Style="{StaticResource ImagePos}" Source ="{Binding Image2}"/>
