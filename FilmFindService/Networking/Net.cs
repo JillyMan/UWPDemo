@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace FilmsDataAccessLayer.Networking
+namespace FilmFindService.Networking
 {
     public class NetHttp : INet
     {

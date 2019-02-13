@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace FilmsDataAccessLayer.Networking
+namespace FilmFindService.Networking
 {
     public interface INet
     {

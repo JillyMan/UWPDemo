@@ -9,6 +9,13 @@ namespace FilmsDataAccessLayer
 {
     public class FilmRepository : IRepository<FilmInfo>
     {
+        public string FileName { get; }
+
+        public FilmRepository(string fileName)
+        {
+            FileName = fileName;
+        }
+
         public async Task<IEnumerable<FilmInfo>> Get()
         {
             var store = await GetStorage();
@@ -38,15 +45,14 @@ namespace FilmsDataAccessLayer
         {
             string json = JsonConvert.SerializeObject(item);
             StorageFile store = await GetStorage();
-            await FileIO.AppendTextAsync(store, "\n");
+          await FileIO.AppendTextAsync(store, "\n");
             await FileIO.AppendTextAsync(store, json);
         }
 
         private async Task<StorageFile> GetStorage()
         {
-            //TODO: Go to resources
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("StorageFilms.txt");
+            StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync(FileName);
             return storageFile;
         }
     }

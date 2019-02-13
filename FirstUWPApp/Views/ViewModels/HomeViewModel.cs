@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FilmFindService;
 using FilmFindService.Interfaces;
+using FilmFindService.Models;
 using FilmsDataAccessLayer.Models;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -16,8 +17,8 @@ namespace FirstUWPApp.Views.ViewModels
 	{
         //TODO: hard code of link, not cool :(
         private IFilmsService ffs = new FindFilmService("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
-        private FilmInfo filmInfo2;
-        private FilmInfo filmInfo;
+        private FilmInfoDTO filmInfo2;
+        private FilmInfoDTO filmInfo;
 
         public IList<string> UriImages = new List<string>();
 
@@ -56,8 +57,8 @@ namespace FirstUWPApp.Views.ViewModels
 
         private async void Init()
         {
-            filmInfo = await ffs.GetFilm("Aquaman");
-            filmInfo2 = await ffs.GetFilm("Logan");
+            filmInfo = await ffs.GetFilm("Logan");
+            filmInfo2 = await ffs.GetFilm("Avatar");
 
             Image = filmInfo.Poster;
             Image2 = filmInfo2.Poster;
