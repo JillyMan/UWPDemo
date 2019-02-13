@@ -18,7 +18,7 @@
             <Setter Property="Orientation" Value="Horizontal"/>
         </Style>
     </Page.Resources>
-        
+
     <Grid Background="#000000">
         <ScrollViewer HorizontalScrollBarVisibility="Visible">
             <StackPanel x:Name="containerImages">
