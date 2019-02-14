@@ -13,14 +13,14 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace FirstUWPApp
+namespace FirstUWPApp.Views
 {
     public sealed partial class ContainerPage : Page
     {
         public ContainerPage()
         {
             this.InitializeComponent();
-            ChildFrame.Navigate(typeof(HomePage));
+            ChildFrame.Navigate(typeof(LookedFilmsPage));
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -30,18 +30,15 @@ namespace FirstUWPApp
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Home.IsSelected)
+            if (LookedFilms.IsSelected)
             {
-                ChildFrame.Navigate(typeof(HomePage));
+                ChildFrame.Navigate(typeof(LookedFilmsPage));
             }
-            else if (Setting.IsSelected)
+            else if (SearchFilm.IsSelected)
             {
-                ChildFrame.Navigate(typeof(SettingPage));
+                ChildFrame.Navigate(typeof(SearchFilmPage));
             }
-            else if (Support.IsSelected)
-            {
-                ChildFrame.Navigate(typeof(SupportPage));
-            }
+
             SplitPanel.IsPaneOpen = !SplitPanel.IsPaneOpen;
         }
     }

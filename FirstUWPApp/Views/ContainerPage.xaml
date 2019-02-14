@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="FirstUWPApp.ContainerPage"
+    x:Class="FirstUWPApp.Views.ContainerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:FirstUWPApp.Views.ViewModels"
-    DataContext="{Binding ContainerViewModel, Source={StaticResource ViewModelLocator}}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding ContainerViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -27,16 +27,12 @@
         <SplitView Name="SplitPanel" Grid.Row="1" OpenPaneLength="150">
             <SplitView.Pane>
                 <ListBox SelectionMode="Single" SelectionChanged="ListBox_SelectionChanged" HorizontalAlignment="Left">
-                    <ListBoxItem Name="Home">
-                        <TextBlock x:Uid="ButtonHome"  
+                    <ListBoxItem Name="SearchFilm">
+                        <TextBlock x:Uid="ButtonSearchFilm" 
                                    Text="" />
                     </ListBoxItem>
-                    <ListBoxItem Name="Setting">
-                        <TextBlock x:Uid="ButtonSetting" 
-                                   Text="" />
-                    </ListBoxItem>
-                    <ListBoxItem Name="Support">
-                        <TextBlock x:Uid="ButtonSupport"
+                    <ListBoxItem Name="LookedFilms">
+                        <TextBlock x:Uid="ButtonLookedFilms"  
                                    Text="" />
                     </ListBoxItem>
                 </ListBox>

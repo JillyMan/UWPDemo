@@ -23,7 +23,19 @@ namespace FirstUWPApp.AppConfig.NinjectModules
                 .To<FindFilmService>()
                 .WithConstructorArgument("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
 
-            Bind<HomeViewModel>()
+            Bind<LoockedFilmsViewModel>()
+               .ToSelf()
+               .InSingletonScope();
+
+            Bind<FilmInfoViewModel>()
+                .ToSelf()
+                .InSingletonScope();
+
+            Bind<SearchFilmPage>()
+               .ToSelf()
+               .InSingletonScope();
+
+            Bind<ContainerViewModel>()
                .ToSelf()
                .InSingletonScope();
         }

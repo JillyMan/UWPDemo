@@ -2,6 +2,7 @@
 using FilmFindService.Interfaces;
 using FilmsDataAccessLayer;
 using FilmsDataAccessLayer.Models;
+using FirstUWPApp.Views;
 using FirstUWPApp.Views.ViewModels;
 using Ninject;
 using Windows.ApplicationModel;
@@ -25,7 +26,7 @@ namespace FirstUWPApp
             IKernel kernel = new StandardKernel(new AppConfig.NinjectModules.FilmServiceModule());
             var a = kernel.Get<IRepository<FilmInfo>>();
             var b = kernel.Get<IFilmsService>();
-            var c = kernel.Get<HomeViewModel>();
+            var c = kernel.Get<LoockedFilmsViewModel>();
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)

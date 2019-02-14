@@ -1,0 +1,84 @@
+﻿<Page
+    x:Class="FirstUWPApp.Views.FilmInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding FilmInfoViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Page.Resources>
+        <Style x:Key="ImagePos" TargetType="Image">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+        <Style x:Key="FilmTextInfo" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <RelativePanel Grid.Row="0">
+            <Button x:Name="BackBtn" RelativePanel.AlignLeftWithPanel="True" 
+                    Width="150"
+                    Height="70"
+                    FontSize="36"
+                    Content="Back"
+                    Background="Red"
+                    Margin="10, 10, 10, 10"
+                    Click="BackBtn_Click"/>
+        </RelativePanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Image Style="{StaticResource ImagePos}" Source="{Binding FilmInfo.Poster}"/>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Title}">
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Runtime}"/>
+                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Genre}"/>
+                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Type}"/>
+                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Plot}" TextLineBounds="Full"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Page>
+
+<!--public class FilmInfoDTO
+    {
+        public string Title { get; set; }
+        public int Year { get; set; }
+        public string Rated { get; set; }
+
+        public string Released { get; set; }
+
+        public string Runtime { get; set; }
+        public string Genre { get; set; }
+        public string Directors { get; set; }
+
+        public string Actors { get; set; }
+        public string Plot { get; set; }
+        public string Poster { get; set; }
+
+        public string ImdRating { get; set; }
+        public string ImdbVotes { get; set; }
+
+        public string Type { get; set; }
+        public string Production { get; set; }
+    }
+-->

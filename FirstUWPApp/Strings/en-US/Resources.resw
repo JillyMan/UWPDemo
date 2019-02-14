@@ -117,28 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ButtonHome.Text" xml:space="preserve">
-    <value>Home</value>
+  <data name="ButtonLookedFilms.Text" xml:space="preserve">
+    <value>Looked films</value>
     <comment>in ContainerPage</comment>
   </data>
-  <data name="ButtonSetting.Text" xml:space="preserve">
-    <value>Setting</value>
+  <data name="ButtonSearchFilm.Text" xml:space="preserve">
+    <value>Search film</value>
     <comment>in ContainerPage</comment>
   </data>
-  <data name="ButtonSupport.Text" xml:space="preserve">
-    <value>Support</value>
-    <comment>in ContainerPage</comment>
-  </data>
-  <data name="TextBlockHome.Text" xml:space="preserve">
-    <value>Welcome to Home page</value>
-  </data>
-  <data name="TextBlockMain.Text" xml:space="preserve">
-    <value>UWP Application</value>
-  </data>
-  <data name="TextBlockSetting.Text" xml:space="preserve">
+  <data name="TextBlockSearchFilm.Text" xml:space="preserve">
     <value>Welcome to Setting page</value>
-  </data>
-  <data name="TextBlockSupport.Text" xml:space="preserve">
-    <value>Welcome to Support page</value>
   </data>
 </root>

@@ -13,28 +13,24 @@ namespace FirstUWPApp.Views.ViewModel.Locator
             kernel = new StandardKernel(new FilmServiceModule());
         }
 
-        public HomeViewModel HomeViewModel
-		{
-            get
-            {
-                var obj = kernel.Get<HomeViewModel>();
-                return obj;
-            }
+        public LoockedFilmsViewModel LoockedFilmsViewModel
+        {
+            get { return kernel.Get<LoockedFilmsViewModel>(); }
+        }
+
+        public FilmInfoViewModel FilmInfoViewModel
+        {
+            get { return kernel.Get<FilmInfoViewModel>(); }
+        }
+
+        public SearchFilmViewModel SearchFilmViewModel
+        {
+            get { return kernel.Get<SearchFilmViewModel>(); }
         }
 
         public ContainerViewModel ContainerViewModel
-		{
-            get { return new ContainerViewModel(); }
-        }
-
-        public SupportViewModel SupportViewModel
-		{
-            get { return new SupportViewModel(); }
-        }
-
-        public SettingViewModel SettingViewModel
-		{
-            get { return new SettingViewModel(); }
+        {
+            get { return kernel.Get<ContainerViewModel>(); }
         }
     }
 }
