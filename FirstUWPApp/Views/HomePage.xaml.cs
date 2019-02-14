@@ -34,13 +34,13 @@ namespace FirstUWPApp
             var imageStyle = Resources["ImagePos"] as Style;
             var homeViewModel = DataContext as HomeViewModel;
 
-            foreach(var uriImage in homeViewModel.UriImages)
-            {
-                var image = new Image();
-                image.Source = new BitmapImage(new Uri(uriImage));
-                image.Style = imageStyle;
-                containerImages.Children.Add(image);
-            }
+            //foreach(var uriImage in homeViewModel.UriImages)
+            //{
+            //    var image = new Image();
+            //    image.Source = new BitmapImage(new Uri(uriImage));
+            //    image.Style = imageStyle;
+            //    containerImages.Children.Add(image);
+            //}
         }
     }
 }

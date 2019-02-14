@@ -120,7 +120,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppConfig\NinjectModules\FilmServiceModule.cs" />
-    <Compile Include="AppConfig\NinjectModules\ViewModelsModules.cs" />
     <Compile Include="Views\ContainerPage.xaml.cs">
       <DependentUpon>ContainerPage.xaml</DependentUpon>
     </Compile>

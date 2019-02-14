@@ -1,4 +1,9 @@
 ﻿using System;
+using FilmFindService.Interfaces;
+using FilmsDataAccessLayer;
+using FilmsDataAccessLayer.Models;
+using FirstUWPApp.Views.ViewModels;
+using Ninject;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -15,8 +20,17 @@ namespace FirstUWPApp
             this.Suspending += OnSuspending;
         }
 
+        private void Test()
+        {
+            IKernel kernel = new StandardKernel(new AppConfig.NinjectModules.FilmServiceModule());
+            var a = kernel.Get<IRepository<FilmInfo>>();
+            var b = kernel.Get<IFilmsService>();
+            var c = kernel.Get<HomeViewModel>();
+        }
+
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)

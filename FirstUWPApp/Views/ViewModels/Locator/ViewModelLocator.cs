@@ -10,7 +10,7 @@ namespace FirstUWPApp.Views.ViewModel.Locator
 
         public ViewModelLocator()
         {
-            kernel = new StandardKernel(new FilmServiceModule(), new ViewModelsModules());
+            kernel = new StandardKernel(new FilmServiceModule());
         }
 
         public HomeViewModel HomeViewModel

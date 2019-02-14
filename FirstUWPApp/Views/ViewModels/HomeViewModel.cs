@@ -16,14 +16,10 @@ namespace FirstUWPApp.Views.ViewModels
 {
 	public class HomeViewModel : AbstractViewModel
 	{
-        //TODO: hard code of link, not cool :(
-        [Inject]
-        public IFilmsService FilmService { private get; set; }// = new FindFilmService("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
+        private IFilmsService filmService;
 
         private FilmInfoDTO filmInfo2;
         private FilmInfoDTO filmInfo;
-
-        public IList<string> UriImages = new List<string>();
 
         private string _imagesUri;
         public string Image
@@ -53,21 +49,19 @@ namespace FirstUWPApp.Views.ViewModels
             }
         }
 
-        public HomeViewModel()
+        public HomeViewModel(IFilmsService service)
         {
+            filmService = service;
             Init();
         }
 
         private async void Init()
         {
-            filmInfo = await FilmService.GetFilm("Logan");
-            filmInfo2 = await FilmService.GetFilm("Avatar");
+            filmInfo = await filmService.GetFilm("Logan");
+            filmInfo2 = await filmService.GetFilm("Avatar");
 
             Image = filmInfo.Poster;
             Image2 = filmInfo2.Poster;
-
-            //UriImages.Add(filmInfo.Poster);
-            //UriImages.Add(filmInfo2.Poster);
         }
     }
 }
