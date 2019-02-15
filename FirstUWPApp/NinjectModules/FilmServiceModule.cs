@@ -4,7 +4,6 @@ using FilmFindService.Networking;
 using FilmsDataAccessLayer;
 using FilmsDataAccessLayer.Models;
 using FirstUWPApp.Views.ViewModels;
-using Ninject;
 using Ninject.Modules;
 
 namespace FirstUWPApp.AppConfig.NinjectModules

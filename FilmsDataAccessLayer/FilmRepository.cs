@@ -44,6 +44,9 @@ namespace FilmsDataAccessLayer
         public async void Insert(FilmInfo item)
         {
             string json = JsonConvert.SerializeObject(item);
+
+            LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Try insert film: {item}");
+
             StorageFile store = await GetStorage();
             await FileIO.AppendTextAsync(store, "\n");
             await FileIO.AppendTextAsync(store, json);

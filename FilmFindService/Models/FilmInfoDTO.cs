@@ -3,7 +3,7 @@
     public class FilmInfoDTO
     {
         public string Title { get; set; }
-        public int Year { get; set; }
+        public string Year { get; set; }
         public string Rated { get; set; }
 
         public string Released { get; set; }

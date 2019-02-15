@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using FirstUWPApp.Views;
+using FirstUWPApp.Views.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -20,6 +22,18 @@ namespace FirstUWPApp
         public SearchFilmPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (DataContext as SearchFilmViewModel);
+            if(vm != null)
+            {
+                if(vm.FilmInfo != null)
+                {
+                    Frame.Navigate(typeof(FilmInfoPage), vm.FilmInfo);
+                }
+            }
         }
     }
 }

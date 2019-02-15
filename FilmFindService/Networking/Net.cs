@@ -8,6 +8,8 @@ namespace FilmFindService.Networking
     {
         public async Task<string> GetJson(string uri)
         {
+            LogingService.LoggingServices.Instance.WriteLine<NetHttp>($"Try get json from {uri}");
+
             string result = "";
             using (var httpClient = new HttpClient())
             {
@@ -16,6 +18,9 @@ namespace FilmFindService.Networking
                     result = await responce.Content.ReadAsStringAsync();
                 }
             }
+
+            LogingService.LoggingServices.Instance.WriteLine<NetHttp>($"Get from Uri: {uri}, Content{result}");
+
             return result;
         }
 

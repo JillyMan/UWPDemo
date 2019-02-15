@@ -133,6 +133,9 @@
     <PackageReference Include="AutoMapper">
       <Version>7.0.1</Version>
     </PackageReference>
+    <PackageReference Include="MetroLog">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>
@@ -147,6 +150,10 @@
     <ProjectReference Include="..\FilmsDataAccessLayer\FilmsDataAccessLayer.csproj">
       <Project>{2fe5f713-4aae-4223-a8b9-ea65b282124e}</Project>
       <Name>FilmsDataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogingService\LogingService.csproj">
+      <Project>{22f92421-6675-4b1a-a5b9-3a129bab4a19}</Project>
+      <Name>LogingService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

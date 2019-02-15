@@ -1,10 +1,7 @@
 ﻿using System;
-using FilmFindService.Interfaces;
-using FilmsDataAccessLayer;
+using FilmFindService.Models;
 using FilmsDataAccessLayer.Models;
 using FirstUWPApp.Views;
-using FirstUWPApp.Views.ViewModels;
-using Ninject;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -21,16 +18,9 @@ namespace FirstUWPApp
             this.Suspending += OnSuspending;
         }
 
-        private void Test()
-        {
-            IKernel kernel = new StandardKernel(new AppConfig.NinjectModules.FilmServiceModule());
-            var a = kernel.Get<IRepository<FilmInfo>>();
-            var b = kernel.Get<IFilmsService>();
-            var c = kernel.Get<LoockedFilmsViewModel>();
-        }
-
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            LogingService.LoggingServices.Instance.WriteLine<App>("Start application", MetroLog.LogLevel.Info);
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -70,13 +60,14 @@ namespace FirstUWPApp
 
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            LogingService.LoggingServices.Instance.WriteLine<App>("On suspending application", MetroLog.LogLevel.Info);
             var deferral = e.SuspendingOperation.GetDeferral();
             deferral.Complete();
         }
 
         private void Init()
         {
-            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<FilmFindService.Models.FilmInfoDTO, FilmsDataAccessLayer.Models.FilmInfo>());
+            AutoMapper.Mapper.Initialize(cfg => cfg.CreateMap<FilmInfoDTO, FilmInfo>());
         }
     }
 }

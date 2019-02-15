@@ -42,6 +42,8 @@ namespace FilmFindService
 
             if (filmDAL == null && !string.IsNullOrEmpty(BaseUri))
             {
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Film not found in storage: {filmName}");
+
                 string newFilmName = string.Join("+", filmName.Split(' '));
                 filmDAL = await net.GetObject<FilmInfo>(BaseUri + newFilmName);
 
@@ -49,6 +51,10 @@ namespace FilmFindService
                 {
                     filmsCache.Insert(filmDAL);                    
                     filmDTO = createDTO(filmDAL); 
+                }
+                else
+                {
+                    LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Film not found in internet: {filmName}");
                 }
             }
             else

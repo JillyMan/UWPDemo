@@ -2,7 +2,7 @@
 {
     public static class String
     {
-        public const double SimilarityCoefficient = 0.5;
+        public const double SimilarityCoefficient = 1;
 
         public static bool PartialCompare(this string left, string right)
         {

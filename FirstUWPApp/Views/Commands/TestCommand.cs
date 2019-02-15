@@ -22,14 +22,10 @@ namespace FirstUWPApp.Views.Commands
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return canExecute == null ? true : canExecute();
-        }
+        public bool CanExecute(object parameter) => canExecute == null ? true : canExecute();
+        
+        public void Execute(object parameter) => execute?.Invoke();
 
-        public void Execute(object parameter)
-        {
-            execute?.Invoke();
-        }
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }

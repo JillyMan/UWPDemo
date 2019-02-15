@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Input;
 using FilmFindService.Interfaces;
 using FilmFindService.Models;
 
@@ -9,9 +8,8 @@ namespace FirstUWPApp.Views.ViewModels
 	{
         private IFilmsService filmService;
 
-        //TODO: after reload page need update films
-        public IList<FilmInfoDTO> Films { get; private set; }
-
+        public IList<FilmInfoDTO> Films { get; set; }
+      
         public LoockedFilmsViewModel(IFilmsService service)
         {
             filmService = service;

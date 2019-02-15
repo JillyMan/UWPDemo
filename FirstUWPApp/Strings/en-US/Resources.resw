@@ -125,6 +125,12 @@
     <value>Search film</value>
     <comment>in ContainerPage</comment>
   </data>
+  <data name="PlaceHolderForSearchBox.PlaceholderText" xml:space="preserve">
+    <value>Input name film</value>
+  </data>
+  <data name="TextBlockMain.Text" xml:space="preserve">
+    <value>Service by search film</value>
+  </data>
   <data name="TextBlockSearchFilm.Text" xml:space="preserve">
     <value>Welcome to Setting page</value>
   </data>
