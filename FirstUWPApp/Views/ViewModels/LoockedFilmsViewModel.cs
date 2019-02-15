@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using FilmFindService;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
 using FilmFindService.Interfaces;
 using FilmFindService.Models;
-using FilmsDataAccessLayer.Models;
-using Ninject;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace FirstUWPApp.Views.ViewModels
 {
@@ -18,6 +9,7 @@ namespace FirstUWPApp.Views.ViewModels
 	{
         private IFilmsService filmService;
 
+        //TODO: after reload page need update films
         public IList<FilmInfoDTO> Films { get; private set; }
 
         public LoockedFilmsViewModel(IFilmsService service)
@@ -27,7 +19,7 @@ namespace FirstUWPApp.Views.ViewModels
         }
 
         private async void Init()
-        {
+        {           
             Films = new List<FilmInfoDTO>(await filmService.GetLookedFilms());
             OnPropertyChanged(nameof(Films));
         }

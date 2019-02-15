@@ -45,7 +45,7 @@ namespace FilmsDataAccessLayer
         {
             string json = JsonConvert.SerializeObject(item);
             StorageFile store = await GetStorage();
-          await FileIO.AppendTextAsync(store, "\n");
+            await FileIO.AppendTextAsync(store, "\n");
             await FileIO.AppendTextAsync(store, json);
         }
 

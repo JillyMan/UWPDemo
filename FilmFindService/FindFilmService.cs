@@ -11,7 +11,6 @@ using FilmFindService.Models;
 
 namespace FilmFindService
 {
-    //TODO: May be create request builder ?!!!!
     public class FindFilmService : IFilmsService
     {
         private INet net;

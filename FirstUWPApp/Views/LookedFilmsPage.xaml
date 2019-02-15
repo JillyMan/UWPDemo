@@ -8,21 +8,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding LoockedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <Page.Resources>
-        <Style x:Key="ImagePos" TargetType="Image">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="10, 0, 10, 0"/>
-            <Setter Property="Stretch" Value="None"/>
-        </Style>
-        <Style TargetType="ListView">
-            <Setter Property="Margin" Value="20, 20, 20, 20"/>
-        </Style>
-
-        <DataTemplate x:Key="ViewImages">
-            <Image Style="{StaticResource ImagePos}" Source="{Binding Path=Poster}"/>
-        </DataTemplate>
-        
-    </Page.Resources>
+    <!--TODO: Virtualize data, and add Style in resources-->
 
     <Grid Background="#000000">
         <ListView 
