@@ -14,21 +14,7 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public string RequiredFilm { get; set; }
         public TestCommand Test { get; }
-        public FilmInfoDTO FilmInfo { get; private set; }
-
-        private string _posterUri;
-        public string Poster
-        {
-            get
-            {
-                return _posterUri;
-            }
-            set
-            {
-                _posterUri = value;
-                OnPropertyChanged(nameof(Poster));
-            }
-        }
+        public IList<FilmInfoDTO> FoundFilms { get; private set; }
 
         private readonly IFilmsService filmService;
 
@@ -43,8 +29,14 @@ namespace FirstUWPApp.Views.ViewModels
 
         private async void FindFilm()
         {
-            FilmInfo = await filmService.GetFilm(RequiredFilm);
-            Poster = FilmInfo == null ? "": FilmInfo.Poster;
+            FoundFilms = (await filmService.GetFilm(RequiredFilm))?.ToList();
+           
+            if(FoundFilms != null)
+            {
+                var loockedVM = (new ViewModel.Locator.ViewModelLocator().LoockedFilmsViewModel);
+                loockedVM.Load();
+                OnPropertyChanged(nameof(FoundFilms));
+            }
         }
 
         private bool CanFindFilm() => true;//!string.IsNullOrEmpty(RequiredFilm);

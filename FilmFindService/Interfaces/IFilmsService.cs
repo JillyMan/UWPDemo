@@ -7,6 +7,6 @@ namespace FilmFindService.Interfaces
     public interface IFilmsService
     {
         Task<IEnumerable<FilmInfoDTO>> GetLookedFilms();
-        Task<FilmInfoDTO> GetFilm(string filmName);
+        Task<IEnumerable<FilmInfoDTO>> GetFilm(string filmName);
     }
 }

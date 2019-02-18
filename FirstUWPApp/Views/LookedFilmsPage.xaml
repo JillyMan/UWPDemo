@@ -8,22 +8,38 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding LoockedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <!--TODO: Virtualize data, and add Style in resources-->
-
     <Grid Background="#000000">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Container.Orientation" Value="Horizontal"/>
+                        <Setter Target="Films.Style" Value="{StaticResource HorizontalScrollViewer}"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Container.Orientation" Value="Vertical"/>
+                        <Setter Target="Films.Style" Value="{StaticResource VerticalScrollViewer}"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <ListView 
-            x:Name="Films" 
+            x:Name="Films"
             ItemsSource="{Binding Films}"
-            SelectionChanged="ListImages_SelectionChanged" 
-            ItemTemplate="{StaticResource ViewImages}"
-            ScrollViewer.HorizontalScrollMode="Enabled"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollMode="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            
+            ItemTemplate="{StaticResource ListViewImagesTemplate}"
+            SelectionChanged="ListImages_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid/>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Container"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>

@@ -28,15 +28,37 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="FilmInfo.Orientation" Value="Horizontal"/>
+                        <Setter Target="FilmInfo.ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="FilmInfo.Orientation" Value="Vertical"/>
+                        <Setter Target="FilmInfo.ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <RelativePanel Grid.Row="0">
-            <Button x:Name="BackBtn" 
-                    Content="Back"
-                    Style="{StaticResource BasicButton}"
+            <Button x:Name="BackBtn"
+                    Style="{StaticResource BackButton}"
                     Click="BackBtn_Click"/>
         </RelativePanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Image Style="{StaticResource ImagePos}" Source="{Binding FilmInfo.Poster}"/>
+        <StackPanel x:Name="FilmInfo"  Orientation="Horizontal" Grid.Row="1">
+            <Image Style="{StaticResource ImagePos}" Source="{Binding FilmInfo.Poster}" ScrollViewer.VerticalScrollMode="Auto"/>
 
             <StackPanel Orientation="Vertical">
                 <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Title}"/>

@@ -4,21 +4,32 @@ using FilmFindService.Models;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-	public class LoockedFilmsViewModel : AbstractViewModel
-	{
+    //TODO: amm, check this moment letter again
+    public class LoockedFilmsViewModel : AbstractViewModel
+    {
         private IFilmsService filmService;
 
-        public IList<FilmInfoDTO> Films { get; set; }
-      
+        private IList<FilmInfoDTO> films;
+        public IList<FilmInfoDTO> Films
+        {
+            get
+            {
+                if(films == null)
+                {
+                    Load();
+                }
+                return films;
+            }
+        }
+        
         public LoockedFilmsViewModel(IFilmsService service)
         {
             filmService = service;
-            Init();
         }
 
-        private async void Init()
+        public async void Load()
         {           
-            Films = new List<FilmInfoDTO>(await filmService.GetLookedFilms());
+            films = new List<FilmInfoDTO>(await filmService.GetLookedFilms());
             OnPropertyChanged(nameof(Films));
         }
     }

@@ -2,9 +2,7 @@
 {
     public static class String
     {
-        public const double SimilarityCoefficient = 1;
-
-        public static bool PartialCompare(this string left, string right)
+        public static bool PartialCompare(this string left, string right, uint firstLetter)
         {
             if (string.IsNullOrEmpty(left) && string.IsNullOrEmpty(right))
             {
@@ -13,17 +11,21 @@
 
             int minLen = left.Length > right.Length ? right.Length : left.Length;
 
-            int similarity = 0;
-            for (int i = 0; i < minLen; ++i)
+            if (minLen < firstLetter)
             {
-                if (left[i] == right[i])
+                return false;
+            }
+
+            int similarity = 0;
+            for (int i = 0; i < firstLetter; ++i)
+            {
+                if (char.ToLower(left[i]) == char.ToLower(right[i]))
                 {
                     ++similarity;
                 }
             }
 
-            bool similary = ((double)similarity / minLen) >= SimilarityCoefficient;
-            return similary;
+            return (similarity >= firstLetter);
         }
     }
 }

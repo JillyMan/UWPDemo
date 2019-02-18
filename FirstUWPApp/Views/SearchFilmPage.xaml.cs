@@ -24,14 +24,14 @@ namespace FirstUWPApp
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ListImages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var vm = (DataContext as SearchFilmViewModel);
-            if(vm != null)
+            //TODO: Vow ))
+            if (DataContext is SearchFilmViewModel vm)
             {
-                if(vm.FilmInfo != null)
+                if(vm.FoundFilms != null)
                 {
-                    Frame.Navigate(typeof(FilmInfoPage), vm.FilmInfo);
+                    Frame.Navigate(typeof(FilmInfoPage), vm.FoundFilms[FilmsView.SelectedIndex]);
                 }
             }
         }

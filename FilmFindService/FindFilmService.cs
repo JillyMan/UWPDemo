@@ -16,6 +16,9 @@ namespace FilmFindService
         private INet net;
         private IRepository<FilmInfo> filmsCache;
 
+        //TODO: magic number;
+        private uint CheckFirstLetters = 3;
+
         public string BaseUri { get; }
 
         public FindFilmService(INet net, IRepository<FilmInfo> filmsCache, string baseUri)
@@ -25,32 +28,32 @@ namespace FilmFindService
             BaseUri = baseUri;
         }
 
-        public async Task<FilmInfoDTO> GetFilm(string filmName)
+        public async Task<IEnumerable<FilmInfoDTO>> GetFilm(string filmName)
         {
-            if(filmName == null)
+            if(string.IsNullOrEmpty(filmName))
             {
-                throw new ArgumentNullException();
+                return null;
             }
+            
+            var filmsDAL = (await filmsCache.Get())?
+                    .Where(x => x.Title.PartialCompare(filmName, CheckFirstLetters));
+                   
+            IList<FilmInfoDTO> filmsDTO = null;
 
-            FilmInfoDTO createDTO(FilmInfo x) => AutoMapper.Mapper.Map<FilmInfoDTO>(x);
-
-            var filmDAL = (await filmsCache.Get())?
-                    .Where(x => x.Title.PartialCompare(filmName))
-                    .FirstOrDefault();
-
-            FilmInfoDTO filmDTO = null;
-
-            if (filmDAL == null && !string.IsNullOrEmpty(BaseUri))
+            if (filmsDAL.Count() == 0 && !string.IsNullOrEmpty(BaseUri))
             {
                 LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Film not found in storage: {filmName}");
 
                 string newFilmName = string.Join("+", filmName.Split(' '));
-                filmDAL = await net.GetObject<FilmInfo>(BaseUri + newFilmName);
+                var filmFromApi = await net.GetObject<FilmInfo>(BaseUri + newFilmName);
 
-                if (filmDAL != null)
+                if (filmFromApi != null)
                 {
-                    filmsCache.Insert(filmDAL);                    
-                    filmDTO = createDTO(filmDAL); 
+                    filmsCache.Insert(filmFromApi);
+                    filmsDTO = new List<FilmInfoDTO>()
+                    {
+                        AutoMapper.Mapper.Map<FilmInfo, FilmInfoDTO>(filmFromApi)
+                    };
                 }
                 else
                 {
@@ -60,10 +63,10 @@ namespace FilmFindService
             else
             {
                 //TODO: May be -> Refactor copy-past
-                filmDTO = createDTO(filmDAL);
+                filmsDTO = AutoMapper.Mapper.Map<IEnumerable<FilmInfo>, List<FilmInfoDTO>>(filmsDAL);
             }
 
-            return filmDTO;
+            return filmsDTO;
         }
 
         public async Task<IEnumerable<FilmInfoDTO>> GetLookedFilms()

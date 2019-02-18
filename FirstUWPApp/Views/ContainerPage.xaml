@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="using:FirstUWPApp.Views.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding ContainerViewModel, Source={StaticResource ViewModelLocator}}">
@@ -20,7 +19,6 @@
                     Click="HamburgerButton_Click"/>
             
             <TextBlock x:Uid="TextBlockMain" 
-                       Text="" 
                        RelativePanel.RightOf="HamburgerButton"
                        Style="{StaticResource TitleTextBlock}"/>
         </RelativePanel>
