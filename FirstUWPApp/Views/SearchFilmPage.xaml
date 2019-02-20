@@ -8,13 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding SearchFilmViewModel, Source={StaticResource ViewModelLocator} }">
-   
+
     <Grid Background="#000000">
         <Grid.RowDefinitions>
             <RowDefinition Height="95"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Desktop">
@@ -37,15 +37,15 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
+
         <RelativePanel Grid.Row="0">
             <Button x:Name="SearchBtn"                    
                     Content="Search" 
                     Style="{StaticResource WhiteButton}"
-                    Command="{Binding Test}"
+                    Command="{Binding SearchFilm}"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"/>
-                        
+
             <TextBox FontSize="30"
                      x:Uid="PlaceHolderForSearchBox"
                     Text="{Binding RequiredFilm, Mode=TwoWay}"                     
@@ -63,4 +63,3 @@
         </ListView>
     </Grid>
 </Page>
-<!--Rename tese-->

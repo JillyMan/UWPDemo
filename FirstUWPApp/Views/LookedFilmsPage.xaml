@@ -4,11 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sys="using:System.Collections.Generic"
-    xmlns:local="using:FirstUWPApp.Views.TemplateViews"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding LoockedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
+    DataContext="{Binding LookedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid Background="#000000">
         <VisualStateManager.VisualStateGroups>
@@ -36,7 +34,7 @@
 
         <ListView 
             x:Name="FilmsView"
-            ItemsSource="{Binding Path=Films}"
+            ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}"
             ItemTemplate="{StaticResource ListViewImagesTemplate}"
             SelectionChanged="ListImages_SelectionChanged">
 

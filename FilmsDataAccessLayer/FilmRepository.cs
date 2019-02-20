@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using FilmsDataAccessLayer.Models;
 using Newtonsoft.Json;
@@ -10,6 +11,7 @@ namespace FilmsDataAccessLayer
     public class FilmRepository : IRepository<FilmInfo>
     {
         public string FileName { get; }
+        private readonly SemaphoreSlim _locker = new SemaphoreSlim(1, 1);
 
         public FilmRepository(string fileName)
         {
@@ -19,9 +21,26 @@ namespace FilmsDataAccessLayer
         public async Task<IEnumerable<FilmInfo>> Get()
         {
             var store = await GetStorage();
-            var jsonLines = await FileIO.ReadLinesAsync(store);
+            IList<string> jsonLines = null;
 
-            if (jsonLines.Count == 0)
+            await _locker.WaitAsync();
+            try
+            {
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Try read from {FileName}");
+                jsonLines = await FileIO.ReadLinesAsync(store);
+            }
+            finally
+            {
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Final read from {FileName}");
+                _locker.Release();
+            }
+
+            if(jsonLines == null)
+            {
+                return null;
+            }
+
+            if(jsonLines.Count == 0)
             {
                 return null;
             }
@@ -44,12 +63,20 @@ namespace FilmsDataAccessLayer
         public async void Insert(FilmInfo item)
         {
             string json = JsonConvert.SerializeObject(item);
-
-            LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Try insert film: {item}");
-
             StorageFile store = await GetStorage();
-            await FileIO.AppendTextAsync(store, "\n");
-            await FileIO.AppendTextAsync(store, json);
+
+            await _locker.WaitAsync();
+            try
+            {
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Try insert film: {item.Title}");
+                await FileIO.AppendTextAsync(store, json);
+                await FileIO.AppendTextAsync(store, "\n");
+            }
+            finally
+            {
+                _locker.Release();
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Film was insert: {item.Title}");
+            }
         }
 
         private async Task<StorageFile> GetStorage()

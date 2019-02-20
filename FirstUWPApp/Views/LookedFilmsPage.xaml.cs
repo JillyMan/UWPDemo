@@ -12,7 +12,7 @@ namespace FirstUWPApp.Views
 
         private void ListImages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(DataContext is LoockedFilmsViewModel vm)
+            if(DataContext is LookedFilmsViewModel vm)
             {
                 if(vm.Films != null)
                 {

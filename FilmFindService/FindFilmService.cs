@@ -17,7 +17,7 @@ namespace FilmFindService
         private IRepository<FilmInfo> filmsCache;
 
         //TODO: magic number;
-        private uint CheckFirstLetters = 3;
+        private uint CheckFirstLetters = 2;
 
         public string BaseUri { get; }
 
@@ -34,9 +34,10 @@ namespace FilmFindService
             {
                 return null;
             }
-            
+
+            //TODO: change find films
             var filmsDAL = (await filmsCache.Get())?
-                    .Where(x => x.Title.PartialCompare(filmName, CheckFirstLetters));
+                    .Where(x => x.Title.Equals(filmName));//PartialCompare(filmName, CheckFirstLetters));
                    
             IList<FilmInfoDTO> filmsDTO = null;
 
@@ -71,6 +72,7 @@ namespace FilmFindService
 
         public async Task<IEnumerable<FilmInfoDTO>> GetLookedFilms()
         {
+            LogingService.LoggingServices.Instance.WriteLine<FilmRepository>("GetLoockedFilms", MetroLog.LogLevel.Info);
             return AutoMapper.Mapper.Map<IEnumerable<FilmInfo>, List<FilmInfoDTO>>(await filmsCache.Get());
         }            
     }

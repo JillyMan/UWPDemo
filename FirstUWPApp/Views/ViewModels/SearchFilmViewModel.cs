@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 using FilmFindService.Interfaces;
 using FilmFindService.Models;
 using FirstUWPApp.Views.Commands;
+using FirstUWPApp.Views.ViewModel.Locator;
+using Windows.UI.Xaml;
 
 namespace FirstUWPApp.Views.ViewModels
 {
     public class SearchFilmViewModel : AbstractViewModel
     {
         public string RequiredFilm { get; set; }
-        public TestCommand Test { get; }
+        public TestCommand SearchFilm { get; }
         public IList<FilmInfoDTO> Films { get; private set; }
 
         private readonly IFilmsService filmService;
@@ -22,18 +24,18 @@ namespace FirstUWPApp.Views.ViewModels
         {
             filmService = service;
 
-            Test = new TestCommand(
+            SearchFilm = new TestCommand(
                 FindFilm,
                 CanFindFilm);
         }
 
         private async void FindFilm()
-        {
+        {          
             Films = (await filmService.GetFilm(RequiredFilm))?.ToList();
            
             if(Films != null)
             {
-                var loockedVM = (new ViewModel.Locator.ViewModelLocator().LoockedFilmsViewModel);
+                var loockedVM = (new ViewModelLocator().LookedFilmsViewModel);
                 loockedVM.Load();
                 OnPropertyChanged(nameof(Films));
             }

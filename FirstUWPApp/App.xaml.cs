@@ -16,6 +16,7 @@ namespace FirstUWPApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Init();
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -33,10 +34,6 @@ namespace FirstUWPApp
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
-                }
-                else
-                {
-                    Init();
                 }
 
                 Window.Current.Content = rootFrame;

@@ -4,8 +4,7 @@ using FilmFindService.Models;
 
 namespace FirstUWPApp.Views.ViewModels
 {
-    //TODO: amm, check this moment letter again
-    public class LoockedFilmsViewModel : AbstractViewModel
+    public class LookedFilmsViewModel : AbstractViewModel
     {
         private IFilmsService filmService;
 
@@ -22,14 +21,16 @@ namespace FirstUWPApp.Views.ViewModels
             }
         }
         
-        public LoockedFilmsViewModel(IFilmsService service)
+        public LookedFilmsViewModel(IFilmsService service)
         {
             filmService = service;
         }
 
         public async void Load()
-        {           
+        {
+            LogingService.LoggingServices.Instance.WriteLine<LookedFilmsViewModel>($"Try load film, current count {films?.Count}");
             films = new List<FilmInfoDTO>(await filmService.GetLookedFilms());
+            LogingService.LoggingServices.Instance.WriteLine<LookedFilmsViewModel>($"Finish load film, current count {films?.Count}");
             OnPropertyChanged(nameof(Films));
         }
     }

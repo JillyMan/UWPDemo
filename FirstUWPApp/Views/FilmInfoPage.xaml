@@ -9,16 +9,16 @@
     DataContext="{Binding FilmInfoViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Page.Resources>
-        <Style TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Orientation" Value="Horizontal"/>
-        </Style>
 
+        <Style x:Key="TextStyle" TargetType="TextBlock">
+            <Setter Property="Width" Value="80"/>
+        </Style>
+        
         <Style x:Key="FilmTextInfo" TargetType="TextBlock">
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
             <Setter Property="FontSize" Value="24"/>
-            <!--TODO: Fix width -->
-            <Setter Property="Width" Value="720"/>
-            <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Left"/>
         </Style>
     </Page.Resources>
     
@@ -32,11 +32,10 @@
             <VisualStateGroup>
                 <VisualState x:Name="Desktop">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720"/>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="FilmInfo.Orientation" Value="Horizontal"/>
-                        <Setter Target="FilmInfo.ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                        <Setter Target="FilmInfo.Style" Value="{StaticResource HorizontalStackStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Mobile">
@@ -44,8 +43,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="FilmInfo.Orientation" Value="Vertical"/>
-                        <Setter Target="FilmInfo.ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                        <Setter Target="FilmInfo.Style" Value="{StaticResource VerticalStackStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -56,19 +54,40 @@
                     Style="{StaticResource BackButton}"
                     Click="BackBtn_Click"/>
         </RelativePanel>
+               
+        <StackPanel x:Name="FilmInfo" Grid.Row="1">
+            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <Image Style="{StaticResource ImagePos}" 
+                            Source="{Binding FilmInfo.Poster}"/>
+            </ScrollViewer>
 
-        <StackPanel x:Name="FilmInfo"  Orientation="Horizontal" Grid.Row="1">
-            <Image Style="{StaticResource ImagePos}" Source="{Binding FilmInfo.Poster}" ScrollViewer.VerticalScrollMode="Auto"/>
+            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <StackPanel x:Name="TextFilmInfo" Style="{StaticResource VerticalStackStyle}">
 
-            <StackPanel Orientation="Vertical">
-                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Title}"/>
-                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Runtime}"/>
-                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Genre}"/>
-                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Type}"/>
-                <!--TODO: Fix overflow text on page-->
-                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Plot}"/>
-            </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Title: </Underline></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Title}"/>
+                    </StackPanel>
 
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Runtime: </Underline></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Runtime}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"> <Bold><Underline>Gemre: </Underline></Bold></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Genre}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Type: </Underline></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Type}"/>
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Plot}"/>
+
+                </StackPanel>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

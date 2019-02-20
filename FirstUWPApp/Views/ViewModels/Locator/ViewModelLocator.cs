@@ -6,16 +6,13 @@ namespace FirstUWPApp.Views.ViewModel.Locator
 {
     public class ViewModelLocator
     {
-        private IKernel kernel;
+        private static IKernel kernel = new StandardKernel(new FilmServiceModule());
 
-        public ViewModelLocator()
-        {
-            kernel = new StandardKernel(new FilmServiceModule());
-        }
+        public ViewModelLocator() { }
 
-        public LoockedFilmsViewModel LoockedFilmsViewModel
+        public LookedFilmsViewModel LookedFilmsViewModel
         {
-            get { return kernel.Get<LoockedFilmsViewModel>(); }
+            get { return kernel.Get<LookedFilmsViewModel>(); }
         }
 
         public FilmInfoViewModel FilmInfoViewModel
