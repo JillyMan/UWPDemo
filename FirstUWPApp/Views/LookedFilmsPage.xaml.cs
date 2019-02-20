@@ -12,8 +12,13 @@ namespace FirstUWPApp.Views
 
         private void ListImages_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var vm = DataContext as LoockedFilmsViewModel;
-            Frame.Navigate(typeof(FilmInfoPage), vm.Films[Films.SelectedIndex]);
+            if(DataContext is LoockedFilmsViewModel vm)
+            {
+                if(vm.Films != null)
+                {
+                    Frame.Navigate(typeof(FilmInfoPage), vm.Films[FilmsView.SelectedIndex]);
+                }
+            }
         }
     }
 }

@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="using:System.Collections.Generic"
+    xmlns:local="using:FirstUWPApp.Views.TemplateViews"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding LoockedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
@@ -13,11 +15,11 @@
             <VisualStateGroup>
                 <VisualState x:Name="Desktop">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720"/>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="Container.Orientation" Value="Horizontal"/>
-                        <Setter Target="Films.Style" Value="{StaticResource HorizontalScrollViewer}"/>
+                        <Setter Target="FilmsView.ItemsPanel" Value="{StaticResource HorizontalStackTemplate}"/>
+                        <Setter Target="FilmsView.Style" Value="{StaticResource HorizontalScrollViewer}"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Mobile">
@@ -25,23 +27,19 @@
                         <AdaptiveTrigger MinWindowHeight="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="Container.Orientation" Value="Vertical"/>
-                        <Setter Target="Films.Style" Value="{StaticResource VerticalScrollViewer}"/>
+                        <Setter Target="FilmsView.ItemsPanel" Value="{StaticResource VerticalStackTemplate}"/>
+                        <Setter Target="FilmsView.Style" Value="{StaticResource VerticalScrollViewer}"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
         <ListView 
-            x:Name="Films"
-            ItemsSource="{Binding Films}"
+            x:Name="FilmsView"
+            ItemsSource="{Binding Path=Films}"
             ItemTemplate="{StaticResource ListViewImagesTemplate}"
             SelectionChanged="ListImages_SelectionChanged">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Container"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+
         </ListView>
     </Grid>
 </Page>
