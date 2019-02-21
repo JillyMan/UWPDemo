@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FilmFindService.Interfaces;
 using FilmFindService.Models;
 
@@ -9,13 +10,13 @@ namespace FirstUWPApp.Views.ViewModels
         private IFilmsService filmService;
 
         private IList<FilmInfoDTO> films;
-        public IList<FilmInfoDTO> Films
+        public IList<FilmInfoDTO> LookedFilms
         {
             get
             {
                 if(films == null)
                 {
-                    Load();
+                    Load().ContinueWith((x) => { });
                 }
                 return films;
             }
@@ -26,12 +27,12 @@ namespace FirstUWPApp.Views.ViewModels
             filmService = service;
         }
 
-        public async void Load()
+        public async Task Load()
         {
             LogingService.LoggingServices.Instance.WriteLine<LookedFilmsViewModel>($"Try load film, current count {films?.Count}");
             films = new List<FilmInfoDTO>(await filmService.GetLookedFilms());
             LogingService.LoggingServices.Instance.WriteLine<LookedFilmsViewModel>($"Finish load film, current count {films?.Count}");
-            OnPropertyChanged(nameof(Films));
+            OnPropertyChanged(nameof(LookedFilms));
         }
     }
 }

@@ -15,9 +15,9 @@ namespace FirstUWPApp
         {
             if (DataContext is SearchFilmViewModel vm)
             {
-                if(vm.Films != null)
+                if(vm.FoundFilms != null)
                 {
-                    Frame.Navigate(typeof(FilmInfoPage), vm.Films[FilmsView.SelectedIndex]);
+                    Frame.Navigate(typeof(FilmInfoPage), vm.FoundFilms[FilmsView.SelectedIndex]);
                 }
             }
         }

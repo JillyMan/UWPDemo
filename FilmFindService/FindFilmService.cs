@@ -50,7 +50,7 @@ namespace FilmFindService
 
                 if (filmFromApi != null)
                 {
-                    filmsCache.Insert(filmFromApi);
+                    await filmsCache.Insert(filmFromApi);
                     filmsDTO = new List<FilmInfoDTO>()
                     {
                         AutoMapper.Mapper.Map<FilmInfo, FilmInfoDTO>(filmFromApi)

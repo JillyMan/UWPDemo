@@ -56,7 +56,7 @@
         <ListView 
             x:Name="FilmsView"
             Grid.Row="1"
-            ItemsSource="{Binding Path=Films}"
+            ItemsSource="{Binding Path=FoundFilms, UpdateSourceTrigger=PropertyChanged}"
             ItemTemplate="{StaticResource ListViewImagesTemplate}"
             SelectionChanged="ListImages_SelectionChanged">
 

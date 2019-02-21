@@ -14,9 +14,10 @@ namespace FirstUWPApp.Views
         {
             if(DataContext is LookedFilmsViewModel vm)
             {
-                if(vm.Films != null)
+                //TODO: ?????
+                if(vm.LookedFilms != null && FilmsView.SelectedIndex != -1)
                 {
-                    Frame.Navigate(typeof(FilmInfoPage), vm.Films[FilmsView.SelectedIndex]);
+                    Frame.Navigate(typeof(FilmInfoPage), vm.LookedFilms[FilmsView.SelectedIndex]);
                 }
             }
         }

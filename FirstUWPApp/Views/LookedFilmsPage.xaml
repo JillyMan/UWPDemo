@@ -34,7 +34,7 @@
 
         <ListView 
             x:Name="FilmsView"
-            ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding Path=LookedFilms, UpdateSourceTrigger=PropertyChanged}"
             ItemTemplate="{StaticResource ListViewImagesTemplate}"
             SelectionChanged="ListImages_SelectionChanged">
 

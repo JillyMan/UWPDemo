@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FilmFindService.Interfaces;
 using FilmFindService.Models;
 using FirstUWPApp.Views.Commands;
 using FirstUWPApp.Views.ViewModel.Locator;
-using Windows.UI.Xaml;
 
 namespace FirstUWPApp.Views.ViewModels
 {
@@ -16,7 +11,7 @@ namespace FirstUWPApp.Views.ViewModels
     {
         public string RequiredFilm { get; set; }
         public TestCommand SearchFilm { get; }
-        public IList<FilmInfoDTO> Films { get; private set; }
+        public IList<FilmInfoDTO> FoundFilms { get; private set; }
 
         private readonly IFilmsService filmService;
 
@@ -30,14 +25,14 @@ namespace FirstUWPApp.Views.ViewModels
         }
 
         private async void FindFilm()
-        {          
-            Films = (await filmService.GetFilm(RequiredFilm))?.ToList();
+        {
+            FoundFilms = (await filmService.GetFilm(RequiredFilm))?.ToList();
            
-            if(Films != null)
+            if(FoundFilms != null)
             {
                 var loockedVM = (new ViewModelLocator().LookedFilmsViewModel);
-                loockedVM.Load();
-                OnPropertyChanged(nameof(Films));
+                await loockedVM.Load();
+                OnPropertyChanged(nameof(FoundFilms));
             }
         }
 

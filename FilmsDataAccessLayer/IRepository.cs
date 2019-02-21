@@ -6,6 +6,6 @@ namespace FilmsDataAccessLayer
     public interface IRepository<T> where T : class
     {
         Task<IEnumerable<T>> Get();
-        void Insert(T item);
+        Task Insert(T item);
     }
 }

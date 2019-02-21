@@ -26,12 +26,13 @@ namespace FilmsDataAccessLayer
             await _locker.WaitAsync();
             try
             {
-                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Try read from {FileName}");
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"-Try read from {FileName}");
                 jsonLines = await FileIO.ReadLinesAsync(store);
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"-Finish async read: {FileName}");
             }
             finally
             {
-                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Final read from {FileName}");
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"-Final read from {FileName}");
                 _locker.Release();
             }
 
@@ -60,7 +61,7 @@ namespace FilmsDataAccessLayer
             return result;
         }
 
-        public async void Insert(FilmInfo item)
+        public async Task Insert(FilmInfo item)
         {
             string json = JsonConvert.SerializeObject(item);
             StorageFile store = await GetStorage();
@@ -68,14 +69,15 @@ namespace FilmsDataAccessLayer
             await _locker.WaitAsync();
             try
             {
-                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Try insert film: {item.Title}");
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"--Try insert film: {item.Title}");
                 await FileIO.AppendTextAsync(store, json);
                 await FileIO.AppendTextAsync(store, "\n");
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"--Finish await operation for insert film: {item.Title}");
             }
             finally
             {
                 _locker.Release();
-                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Film was insert: {item.Title}");
+                LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"--Film was insert: {item.Title}");
             }
         }
 
