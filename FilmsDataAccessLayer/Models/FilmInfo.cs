@@ -23,5 +23,6 @@ namespace FilmsDataAccessLayer.Models
 
         public string Type { get; set; }
         public string Production { get; set; }
+        public bool Response { get; set; }
     }
 }

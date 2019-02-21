@@ -16,9 +16,6 @@ namespace FilmFindService
         private INet net;
         private IRepository<FilmInfo> filmsCache;
 
-        //TODO: magic number;
-        private uint CheckFirstLetters = 2;
-
         public string BaseUri { get; }
 
         public FindFilmService(INet net, IRepository<FilmInfo> filmsCache, string baseUri)
@@ -37,7 +34,7 @@ namespace FilmFindService
 
             //TODO: change find films
             var filmsDAL = (await filmsCache.Get())?
-                    .Where(x => x.Title.Equals(filmName));//PartialCompare(filmName, CheckFirstLetters));
+                    .Where(x => x.Title.PartialCompare(filmName));
                    
             IList<FilmInfoDTO> filmsDTO = null;
 
@@ -50,11 +47,14 @@ namespace FilmFindService
 
                 if (filmFromApi != null)
                 {
-                    await filmsCache.Insert(filmFromApi);
-                    filmsDTO = new List<FilmInfoDTO>()
+                    if(filmFromApi.Response)
                     {
-                        AutoMapper.Mapper.Map<FilmInfo, FilmInfoDTO>(filmFromApi)
-                    };
+                        await filmsCache.Insert(filmFromApi);
+                        filmsDTO = new List<FilmInfoDTO>()
+                        {
+                            AutoMapper.Mapper.Map<FilmInfo, FilmInfoDTO>(filmFromApi)
+                        };
+                    }
                 }
                 else
                 {
