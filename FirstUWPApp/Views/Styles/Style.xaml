@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:Core="using:Microsoft.Xaml.Interactions.Core">
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:models="using:FilmFindService.Models">
     
     <Style TargetType="TextBlock" x:Key="ContentTextBlock">
         <Setter Property="FontSize" Value="24"/>
@@ -83,12 +84,17 @@
     </Style>
    
     <DataTemplate x:Key="ListViewImagesTemplate">
-        <Image x:Name="PosterFilm" Style="{StaticResource ImagePos}" Source="{Binding Path=Poster}"/>
-        <Interactivity:Interaction.Behaviors>
-            <Core:DataTriggerBehavior Binding="{Binding Source, ElementName=PosterFilm}" Value="null">
-                <Core:ChangePropertyAction TargetObject="{Binding ElementName=PosterFilm}" PropertyName="Source" Value="ImageNotFound.png"/>
-            </Core:DataTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>
+        <StackPanel Style="{StaticResource VerticalStackStyle}">
+            <Image x:Name="PosterFilm" Style="{StaticResource ImagePos}" Source="{Binding Path=Poster}"/>
+            <!--<Interactivity:Interaction.Behaviors>
+                <Core:DataTriggerBehavior Binding="{Binding Source, ElementName=PosterFilm}" Value="null">
+                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=PosterFilm}" PropertyName="Source" Value="ImageNotFound.png"/>
+                </Core:DataTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>-->
+        
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Path=Genre}"/>
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Path=Year}"/>
+        </StackPanel>
     </DataTemplate>
 
     <!--ListView style end-->
@@ -117,5 +123,11 @@
     </ItemsPanelTemplate>
    
     <!---->
+    
+    
+    
+    <Style TargetType="RelativePanel" x:Key="BaseRelativePanel">
+        <Setter Property="Margin" Value="10"/>
+    </Style>
     
 </ResourceDictionary>

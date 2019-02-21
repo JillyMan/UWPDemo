@@ -38,7 +38,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <RelativePanel Grid.Row="0">
+        <RelativePanel Grid.Row="0" Style="{StaticResource BaseRelativePanel}">
             <Button x:Name="SearchBtn"                    
                     Content="Search" 
                     Style="{StaticResource WhiteButton}"

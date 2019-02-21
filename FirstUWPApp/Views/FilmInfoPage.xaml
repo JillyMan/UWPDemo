@@ -35,7 +35,7 @@
                         <AdaptiveTrigger MinWindowWidth="640"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="FilmInfo.Style" Value="{StaticResource HorizontalStackStyle}"/>
+                        <Setter Target="TextInfo.Style" Value="{StaticResource HorizontalStackStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Mobile">
@@ -43,7 +43,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="FilmInfo.Style" Value="{StaticResource VerticalStackStyle}"/>
+                        <Setter Target="TextInfo.Style" Value="{StaticResource VerticalStackStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -54,41 +54,42 @@
                     Style="{StaticResource BackButton}"
                     Click="BackBtn_Click"/>
         </RelativePanel>
-               
-        <StackPanel x:Name="FilmInfo" Grid.Row="1">
-            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <Image Style="{StaticResource ImagePos}" 
-                            Source="{Binding FilmInfo.Poster}"/>
-            </ScrollViewer>
 
-            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <StackPanel x:Name="TextFilmInfo" Style="{StaticResource VerticalStackStyle}">
+        <RelativePanel Grid.Row="1">
+            <Image  x:Name="Poster"
+                    Style="{StaticResource ImagePos}" 
+                    Source="{Binding FilmInfo.Poster}"
+                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignLeftWithPanel="True"/>
 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Title: </Underline></TextBlock>
-                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Title}"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Runtime: </Underline></TextBlock>
-                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Runtime}"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource TextStyle}"> <Bold><Underline>Gemre: </Underline></Bold></TextBlock>
-                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Genre}"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Type: </Underline></TextBlock>
-                        <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Type}"/>
-                    </StackPanel>
-
-                    <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Plot}"/>
-
+            <StackPanel x:Name="TextInfo" 
+                        RelativePanel.RightOf="Poster"
+                        RelativePanel.AlignRightWithPanel="True">
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextStyle}"><Underline>Title: </Underline></TextBlock>
+                    <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Title}"/>
                 </StackPanel>
-            </ScrollViewer>
-        </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextStyle}"><Underline>Runtime: </Underline></TextBlock>
+                    <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Runtime}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextStyle}"> <Bold><Underline>Gemre: </Underline></Bold></TextBlock>
+                    <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Genre}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextStyle}"><Underline>Type: </Underline></TextBlock>
+                    <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Type}"/>
+                </StackPanel>
+
+                <TextBlock Style="{StaticResource FilmTextInfo}" Text="{Binding FilmInfo.Plot}"/>
+
+            </StackPanel>
+        </RelativePanel>
     </Grid>
 </Page>
 
