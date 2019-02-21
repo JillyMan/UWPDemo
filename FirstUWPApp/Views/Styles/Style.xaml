@@ -24,16 +24,16 @@
     
     <!--Button stlye start  (go to other style)-->
     
-    <Style TargetType="Button" x:Key="BasicButton">
+    <Style TargetType="Button" x:Key="BasicButtonStyle">
         <Setter Property="FontSize" Value="30"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="WhiteButton" BasedOn="{StaticResource BasicButton}">
+    <Style TargetType="Button" x:Key="WhiteButton" BasedOn="{StaticResource BasicButtonStyle}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Black"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="SogoeMDL2SFontFamilyButton" BasedOn="{StaticResource BasicButton}">
+    <Style TargetType="Button" x:Key="SogoeMDL2SFontFamilyButton" BasedOn="{StaticResource BasicButtonStyle}">
         <Setter Property="Margin" Value="10, 10, 10, 10"/>
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
     </Style>
@@ -42,9 +42,31 @@
         <Setter Property="Content" Value="&#xE700;"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="BackButton" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
+    <Style TargetType="Button" x:Key="BackButtonStyle" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
         <Setter Property="Content" Value="&#xE72B;"/>
     </Style>
+    
+    <Style TargetType="Button" x:Key="ForwardButtonStyle" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
+        <Setter Property="Content" Value="&#xE72A;"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ChevronLeftButtonStyle" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
+        <Setter Property="Content" Value="&#xE76B;"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ChevronRightButtonStyle" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
+        <Setter Property="Content" Value="&#xE76C;"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ChevronUpButtonStyle" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
+        <Setter Property="Content" Value="&#xE70E;"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ChevronDownButtonStyle" BasedOn="{StaticResource SogoeMDL2SFontFamilyButton}">
+        <Setter Property="Content" Value="&#xE70D;"/>
+    </Style>
+
+
 
     <!--Button stlye end-->
 
@@ -65,24 +87,33 @@
 
     <!--ListView style start-->
 
-    <Style TargetType="ListView" x:Key="BaseScrollViewer">
+    <Style TargetType="ScrollViewer" x:Key="BaseScrollViewer">
         <Setter Property="Margin" Value="10"/>
     </Style>
 
-    <Style TargetType="ListView" x:Key="HorizontalScrollViewer" BasedOn="{StaticResource BaseScrollViewer}">
-        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Enabled"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Disabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+    <Style TargetType="ScrollViewer" x:Key="HorizontalScrollViewerStyle" BasedOn="{StaticResource HorizontalScrollHiddenStyle}">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
     </Style>
 
-    <Style TargetType="ListView" x:Key="VerticalScrollViewer" BasedOn="{StaticResource BaseScrollViewer}">
-        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+    <Style TargetType="ScrollViewer" x:Key="VerticalScrollViewerStyle" BasedOn="{StaticResource VerticalScrollHiddenStyle}">
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
     </Style>
-   
+
+    <Style TargetType="ScrollViewer" x:Key="VerticalScrollHiddenStyle" BasedOn="{StaticResource BaseScrollViewer}">
+        <Setter Property="VerticalScrollMode" Value="Enabled"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+        <Setter Property="HorizontalScrollMode" Value="Disabled"/>
+    </Style>
+
+    <Style TargetType="ScrollViewer" x:Key="HorizontalScrollHiddenStyle" BasedOn="{StaticResource BaseScrollViewer}">
+        <Setter Property="HorizontalScrollMode" Value="Enabled"/>
+        <Setter Property="VerticalScrollMode" Value="Disabled"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
+    </Style>
+
+
     <DataTemplate x:Key="ListViewImagesTemplate">
         <StackPanel Style="{StaticResource VerticalStackStyle}">
             <Image x:Name="PosterFilm" Style="{StaticResource ImagePos}" Source="{Binding Path=Poster}"/>

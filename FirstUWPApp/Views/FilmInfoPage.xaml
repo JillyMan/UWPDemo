@@ -51,7 +51,7 @@
         
         <RelativePanel Grid.Row="0">
             <Button x:Name="BackBtn"
-                    Style="{StaticResource BackButton}"
+                    Style="{StaticResource BackButtonStyle}"
                     Click="BackBtn_Click"/>
         </RelativePanel>
 

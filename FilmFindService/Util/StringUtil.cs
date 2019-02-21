@@ -8,8 +8,8 @@
             {
                 return false;
             }
-                
-            return !(left.IndexOf(right) == -1);
+          
+            return !(left.ToLower().IndexOf(right.ToLower()) == -1);
         }
     }
 }

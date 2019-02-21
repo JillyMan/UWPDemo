@@ -23,7 +23,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="FilmsView.ItemsPanel" Value="{StaticResource HorizontalStackTemplate}"/>
-                        <Setter Target="FilmsView.Style" Value="{StaticResource HorizontalScrollViewer}"/>
+                        <Setter Target="FilmsView.Style" Value="{StaticResource HorizontalScrollViewerStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Mobile">
@@ -32,7 +32,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="FilmsView.ItemsPanel" Value="{StaticResource VerticalStackTemplate}"/>
-                        <Setter Target="FilmsView.Style" Value="{StaticResource VerticalScrollViewer}"/>
+                        <Setter Target="FilmsView.Style" Value="{StaticResource VerticalScrollViewerStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

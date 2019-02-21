@@ -8,16 +8,42 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding LookedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
 
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="LeftCenterPosBtnStyle" BasedOn="{StaticResource ChevronLeftButtonStyle}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="RightCenterPosBtnStyle" BasedOn="{StaticResource ChevronRightButtonStyle}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+
+        <Style TargetType="Button" x:Key="TopCenterPosBtnStyle" BasedOn="{StaticResource ChevronUpButtonStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BottomCenterPosBtnStyle" BasedOn="{StaticResource ChevronDownButtonStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="#000000">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Desktop">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
+                        <AdaptiveTrigger MinWindowWidth="680"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <!--<Setter Target="FilmsView.Style" Value="{StaticResource HorizontalScrollViewer}"/>-->
                         <Setter Target="FilmsView.ItemsPanel" Value="{StaticResource HorizontalStackTemplate}"/>
-                        <Setter Target="FilmsView.Style" Value="{StaticResource HorizontalScrollViewer}"/>
+                        <Setter Target="ScrollerFilms.Style" Value="{StaticResource HorizontalScrollHiddenStyle}"/>
+                        <Setter Target="LeftUpBtn.Style" Value="{StaticResource LeftCenterPosBtnStyle}"/>
+                        <Setter Target="RightBottomBtn.Style" Value="{StaticResource RightCenterPosBtnStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Mobile">
@@ -25,19 +51,27 @@
                         <AdaptiveTrigger MinWindowHeight="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <!--<Setter Target="FilmsView.Style" Value="{StaticResource VerticalScrollViewer}"/>-->
                         <Setter Target="FilmsView.ItemsPanel" Value="{StaticResource VerticalStackTemplate}"/>
-                        <Setter Target="FilmsView.Style" Value="{StaticResource VerticalScrollViewer}"/>
+                        <Setter Target="ScrollerFilms.Style" Value="{StaticResource VerticalScrollHiddenStyle}"/>
+                        <Setter Target="LeftUpBtn.Style" Value="{StaticResource TopCenterPosBtnStyle}"/>
+                        <Setter Target="RightBottomBtn.Style" Value="{StaticResource BottomCenterPosBtnStyle}"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <ListView 
-            x:Name="FilmsView"
-            ItemsSource="{Binding Path=LookedFilms, UpdateSourceTrigger=PropertyChanged}"
-            ItemTemplate="{StaticResource ListViewImagesTemplate}"
-            SelectionChanged="ListImages_SelectionChanged">
+        <ScrollViewer x:Name="ScrollerFilms">
+            <ListView 
+                x:Name="FilmsView"
+                ItemsSource="{Binding Path=LookedFilms, UpdateSourceTrigger=PropertyChanged}"
+                ItemTemplate="{StaticResource ListViewImagesTemplate}"
+                SelectionChanged="ListImages_SelectionChanged">
+            </ListView>
+        </ScrollViewer>
 
-        </ListView>
+        <Button x:Name="LeftUpBtn" Click="ChevronLeftButton"/>
+        <Button x:Name="RightBottomBtn" Click="ChevronRightButton"/>
+        
     </Grid>
 </Page>
