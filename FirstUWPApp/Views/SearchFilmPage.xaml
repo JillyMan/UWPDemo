@@ -9,7 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding SearchFilmViewModel, Source={StaticResource ViewModelLocator} }">
 
-    <Grid Background="#000000">
+    <Page.Resources>
+        <Style TargetType="Button" x:Name="SearchBtnStyle" BasedOn="{StaticResource GrayButtonStyle}">
+            <Setter Property="Margin" Value="8, 0, 0, 0"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="95"/>
             <RowDefinition Height="*"/>
@@ -39,18 +45,20 @@
         </VisualStateManager.VisualStateGroups>
 
         <RelativePanel Grid.Row="0" Style="{StaticResource BaseRelativePanel}">
-            <Button x:Name="SearchBtn"                    
+            <Button x:Name="SearchBtn"
                     Content="Search" 
-                    Style="{StaticResource WhiteButton}"
+                    Style="{StaticResource SearchBtnStyle}"
                     Command="{Binding SearchFilm}"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"/>
 
             <TextBox FontSize="30"
                      x:Uid="PlaceHolderForSearchBox"
-                    Text="{Binding RequiredFilm, Mode=TwoWay}"                     
+                    Text="{Binding RequiredFilm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                     
                     RelativePanel.LeftOf="SearchBtn"
-                    RelativePanel.AlignLeftWithPanel="True"/>
+                    RelativePanel.AlignLeftWithPanel="True"
+                     KeyDown="TextBox_KeyDown">
+            </TextBox>
         </RelativePanel>
 
         <ListView 

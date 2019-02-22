@@ -25,7 +25,7 @@ namespace FirstUWPApp.Views.ViewModels
         private async void FindFilm()
         {
             FoundFilms = (await filmService.GetFilm(RequiredFilm))?.ToList();
-           
+                       
             if(FoundFilms != null)
             {
                 var loockedVM = (new ViewModelLocator().LookedFilmsViewModel);

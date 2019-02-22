@@ -8,7 +8,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding LookedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <Grid Background="#000000">
+    <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Desktop">
@@ -47,6 +47,6 @@
 
         <Button x:Name="LeftUpBtn" Click="ChevronLeftButton"/>
         <Button x:Name="RightBottomBtn" Click="ChevronRightButton"/>
-        
+      
     </Grid>
 </Page>
