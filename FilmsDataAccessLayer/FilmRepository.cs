@@ -36,12 +36,7 @@ namespace FilmsDataAccessLayer
                 _locker.Release();
             }
 
-            if(jsonLines == null)
-            {
-                return null;
-            }
-
-            if(jsonLines.Count == 0)
+            if(jsonLines == null || jsonLines.Count == 0)
             {
                 return null;
             }
@@ -83,8 +78,19 @@ namespace FilmsDataAccessLayer
 
         private async Task<StorageFile> GetStorage()
         {
+
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync(FileName);
+            StorageFile storageFile;
+
+            if (await localFolder.TryGetItemAsync(FileName) == null)
+            {
+                storageFile = await localFolder.CreateFileAsync(FileName);
+            }
+            else
+            {
+                storageFile = await localFolder.GetFileAsync(FileName);
+            }
+
             return storageFile;
         }
     }

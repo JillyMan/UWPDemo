@@ -66,7 +66,25 @@
         <Setter Property="Content" Value="&#xE70D;"/>
     </Style>
 
+    <Style TargetType="Button" x:Key="ChevronLeftCenterPosBtnStyle" BasedOn="{StaticResource ChevronLeftButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 
+    <Style TargetType="Button" x:Key="ChevronRightCenterPosBtnStyle" BasedOn="{StaticResource ChevronRightButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ChevronUpTopCenterPosBtnStyle" BasedOn="{StaticResource ChevronUpButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ChevronDownBottomCenterPosButtonStyle" BasedOn="{StaticResource ChevronDownButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
 
     <!--Button stlye end-->
 
@@ -75,9 +93,7 @@
     <Style TargetType="Image" x:Key="ImagePos" >
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="10, 0, 10, 0"/>
         <Setter Property="Stretch" Value="None"/>
-        <Setter Property="Margin" Value="1, 1, 1, 1"/>
     </Style>
     <Style TargetType="ListView">
         <Setter Property="Margin" Value="20, 20, 20, 20"/>
@@ -117,12 +133,6 @@
     <DataTemplate x:Key="ListViewImagesTemplate">
         <StackPanel Style="{StaticResource VerticalStackStyle}">
             <Image x:Name="PosterFilm" Style="{StaticResource ImagePos}" Source="{Binding Path=Poster}"/>
-            <!--<Interactivity:Interaction.Behaviors>
-                <Core:DataTriggerBehavior Binding="{Binding Source, ElementName=PosterFilm}" Value="null">
-                    <Core:ChangePropertyAction TargetObject="{Binding ElementName=PosterFilm}" PropertyName="Source" Value="ImageNotFound.png"/>
-                </Core:DataTriggerBehavior>
-            </Interactivity:Interaction.Behaviors>-->
-        
             <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Path=Genre}"/>
             <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Path=Year}"/>
         </StackPanel>
@@ -152,10 +162,9 @@
     <ItemsPanelTemplate x:Key="HorizontalStackTemplate">
         <StackPanel Style="{StaticResource HorizontalStackStyle}"/>
     </ItemsPanelTemplate>
-   
+
     <!---->
-    
-    
+       
     
     <Style TargetType="RelativePanel" x:Key="BaseRelativePanel">
         <Setter Property="Margin" Value="10"/>

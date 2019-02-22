@@ -38,7 +38,7 @@ namespace FilmFindService
                    
             IList<FilmInfoDTO> filmsDTO = null;
 
-            if (filmsDAL.Count() == 0 && !string.IsNullOrEmpty(BaseUri))
+            if ((filmsDAL == null || filmsDAL.Count() == 0) && !string.IsNullOrEmpty(BaseUri))
             {
                 LogingService.LoggingServices.Instance.WriteLine<FilmRepository>($"Film not found in storage: {filmName}");
 
