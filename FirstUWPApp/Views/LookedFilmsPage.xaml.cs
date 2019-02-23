@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using FirstUWPApp.Views.ViewModels;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace FirstUWPApp.Views
 {
@@ -28,10 +29,12 @@ namespace FirstUWPApp.Views
         {
             if (ScrollerFilms.HorizontalScrollMode == ScrollMode.Enabled)
             {
+                (RightBottomBtn?.Resources["rotateRightYButtonAnimation"] as Storyboard)?.Begin();
                 HorizontalScroll(offset);
             }
             else
             {
+                (RightBottomBtn?.Resources["rotateDownXButtonAnimation"] as Storyboard)?.Begin();
                 VerticalScroll(offset);
             }
         }
@@ -40,10 +43,12 @@ namespace FirstUWPApp.Views
         {
             if (ScrollerFilms.HorizontalScrollMode == ScrollMode.Enabled)
             {
+                (LeftUpBtn?.Resources["rotateLeftYButtonAnimation"] as Storyboard)?.Begin();
                 HorizontalScroll(-offset);
             }
             else
             {
+                (LeftUpBtn?.Resources["rotateUpXButtonAnimation"] as Storyboard)?.Begin();
                 VerticalScroll(-offset);
             }
         }

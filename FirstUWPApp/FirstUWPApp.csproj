@@ -120,6 +120,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="NinjectModules\FilmServiceModule.cs" />
+    <Compile Include="Views\Buttons\RotateButton.xaml.cs">
+      <DependentUpon>RotateButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Commands\RelayCommand.cs" />
     <Compile Include="Views\ContainerPage.xaml.cs">
       <DependentUpon>ContainerPage.xaml</DependentUpon>
@@ -172,6 +175,10 @@
     <Page Include="Resources\Dictionary\LocatorDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Buttons\RotateButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ContainerPage.xaml">
       <SubType>Designer</SubType>

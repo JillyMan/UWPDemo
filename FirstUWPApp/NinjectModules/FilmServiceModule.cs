@@ -20,8 +20,8 @@ namespace FirstUWPApp.AppConfig.NinjectModules
 
             Bind<IFilmsService>()
                 .To<FindFilmService>()
-                .WithConstructorArgument("http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
-
+                .WithPropertyValue("BaseUri", "http://www.omdbapi.com/?plot=full&apikey=b5a32870&t=");
+                
             Bind<LookedFilmsViewModel>()
                .ToSelf()
                .InSingletonScope();

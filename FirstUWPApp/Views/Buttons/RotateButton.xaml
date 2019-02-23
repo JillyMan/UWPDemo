@@ -1,0 +1,35 @@
+﻿<Button
+    x:Class="FirstUWPApp.Views.Buttons.RotateButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    RenderTransformOrigin="0.5 0.5">
+
+    <Button.Resources>
+        
+        <Storyboard x:Name="rotateLeftYButtonAnimation" FillBehavior="Stop" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="planeProj"
+                             Storyboard.TargetProperty="RotationY"
+                             To="45" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="rotateRightYButtonAnimation" FillBehavior="Stop" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="planeProj"
+                             Storyboard.TargetProperty="RotationY"
+                             To="-45" Duration="0:0:0.2"/>
+        </Storyboard>
+
+        <Storyboard x:Name="rotateUpXButtonAnimation" FillBehavior="Stop" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="planeProj"
+                             Storyboard.TargetProperty="RotationX"                             
+                             To="-45" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="rotateDownXButtonAnimation" FillBehavior="Stop" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="planeProj"
+                             Storyboard.TargetProperty="RotationX"
+                             To="45" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Button.Resources>
+
+    <Button.Projection>
+        <PlaneProjection x:Name="planeProj" />
+    </Button.Projection>
+</Button>

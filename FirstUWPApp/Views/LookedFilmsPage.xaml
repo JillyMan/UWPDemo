@@ -4,10 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:local="using:FirstUWPApp.Views.Buttons"
+    mc:Ignorable="d"   
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding LookedFilmsViewModel, Source={StaticResource ViewModelLocator}}">
-
+   
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -45,8 +46,8 @@
             </ListView>
         </ScrollViewer>
 
-        <Button x:Name="LeftUpBtn" Click="ChevronLeftButton"/>
-        <Button x:Name="RightBottomBtn" Click="ChevronRightButton"/>
-      
+        
+        <local:RotateButton x:Name="LeftUpBtn" Click="ChevronLeftButton"/>
+        <local:RotateButton x:Name="RightBottomBtn" Click="ChevronRightButton"/>
     </Grid>
 </Page>

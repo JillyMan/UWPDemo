@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <Style x:Key="TextStyle" TargetType="TextBlock">
-            <Setter Property="Width" Value="80"/>
+            <Setter Property="Margin" Value="12, 0, 12, 0"/>
         </Style>
         
         <Style x:Key="FilmTextInfoStyle" TargetType="TextBlock">
@@ -25,26 +25,6 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
         </Style>
-
-        <Storyboard x:Key="storyboard">
-            <DoubleAnimation Storyboard.TargetName="Poster"
-                             Storyboard.TargetProperty="Width"
-                             EnableDependentAnimation="True"
-                             FillBehavior="Stop"
-                             From="1" To="84" Duration="0:0:3">
-                
-                <DoubleAnimation.EasingFunction>
-                    <ElasticEase/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-
-            <!--<DoubleAnimation Storyboard.TargetName="LeftUpBtn"
-                             Storyboard.TargetProperty="Width"
-                             EnableDependentAnimation="True"
-                             AutoReverse="True"
-                             By="50" Duration="0:0:0.05"/>-->
-        </Storyboard>
-        
     </Page.Resources>
    
     <Grid>
@@ -53,121 +33,45 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Desktop">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--<Setter Target="TextInfo.Style" Value="{StaticResource StackStyleHoriz}"/>-->
-                        <Setter Target="FilmInfo.RelativePanel.RightOf" Value="Poster"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Mobile">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--<Setter Target="TextInfo.Style" Value="{StaticResource VerticalStackStyle}"/>-->
-                        <Setter Target="FilmInfo.RelativePanel.Bellow" Value="Poster"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
         <RelativePanel Grid.Row="0">
             <Button x:Name="BackBtn"
                     Style="{StaticResource BackButtonStyle}"
                     Click="BackBtn_Click"/>
         </RelativePanel>
 
-        <StackPanel Grid.Row="1" x:Name="TextInfo">
-            <Image  x:Name="Poster"
-                Style="{StaticResource ImagePos}" 
-                Source="{Binding FilmInfo.Poster}"
-                RelativePanel.AlignTopWithPanel="True"
-                RelativePanel.AlignLeftWithPanel="True"/>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="TextInfo">
+                <Image  x:Name="Poster"
+                    Style="{StaticResource ImagePos}" 
+                    Source="{Binding FilmInfo.Poster}"
+                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignLeftWithPanel="True"/>
 
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}"><Underline>Title: </Underline></TextBlock>
-                    <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Title}"/>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Title: </Underline></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Title}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Runtime: </Underline></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Runtime}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"> <Bold><Underline>Genre: </Underline></Bold></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Genre}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource TextStyle}"><Underline>Type: </Underline></TextBlock>
+                        <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Type}"/>
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Plot}"/>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}"><Underline>Runtime: </Underline></TextBlock>
-                    <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Runtime}"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}"> <Bold><Underline>Gemre: </Underline></Bold></TextBlock>
-                    <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Genre}"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}"><Underline>Type: </Underline></TextBlock>
-                    <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Type}"/>
-                </StackPanel>
-
-                <TextBlock Style="{StaticResource FilmTextInfoStyle}" Text="{Binding FilmInfo.Plot}"/>
-
             </StackPanel>
-        </StackPanel>
-
-        <!--<ScrollViewer Grid.Row="1"
-                      VerticalScrollMode="Enabled" 
-                      VerticalScrollBarVisibility="Visible">
-
-            <RelativePanel Margin="10">
-                <Rectangle x:Name="Poster"                           
-                               Fill="Red"                     
-                               RelativePanel.AlignTopWithPanel="True"
-                               RelativePanel.AlignLeftWithPanel="True"
-                               Width="400" Height="400"/>
-
-                <StackPanel x:Name="FilmInfo" RelativePanel.RightOf="Poster">
-                    <Image Source="Assets/SplashScreen.scale-200.png" Stretch="None"/>
-                    <TextBlock x:Name="Text" 
-                        Style="{StaticResource FilmTextInfoStyle}"> 
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
-                        type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
-                        typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets 
-                        containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem 
-                        Ipsum It is a long established fact that a reader will be distracted 
-                        by the readable content of a page when looking at its layout.
-                        The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, 
-                        as opposed to using 'Content here, content 
-                        here', making it look like readable English. 
-                        Many desktop publishing packages and web page editors now use 
-                        Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will 
-                        uncover many web sites still in their infancy. Various versions have evolved over the 
-                        years, sometimes by accident, sometimes on purpose (injected humour and the like).Contrary to popular 
-                        belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 
-                        BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney 
-                        College in Virginia, looked up one of the more obscure Latin words, consectetur, from 
-                        a Lorem Ipsum passage, and going through the cites of the word in classical literature
-                        , discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 
-                        and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes 
-                        of Good and Evil) by Cicero, written in 45 BC. This book is 
-                        a treatise on the theory of ethics, very popular during 
-                        the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor 
-                        sit amet..", comes from a line in section 1.10.32.The standard 
-                        chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-                        Sections 1.10.32 and 1.10.33 from "de 
-                        Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original 
-                        form, accompanied by English versions from the 1914 translation by H. Rackham
-                    </TextBlock>
-                    <Button Content="Accept" Style="{StaticResource AccentButtonStyle}" Click="Button_Click"/>
-
-                    <Button x:Name="LeftUpBtn" Style="{StaticResource ChevronRightCenterPosBtnStyle}"/>
-                    <Button x:Name="RightBottomBtn" Style="{StaticResource ChevronLeftCenterPosBtnStyle}"/>
-                
-                </StackPanel>
-            </RelativePanel>
-        </ScrollViewer>-->
-
+        </ScrollViewer>
     </Grid>
 </Page>
 

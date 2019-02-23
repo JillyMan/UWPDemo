@@ -16,13 +16,12 @@ namespace FilmFindService
         private INet net;
         private IRepository<FilmInfo> filmsCache;
 
-        public string BaseUri { get; }
+        public string BaseUri { get; set; }
 
-        public FindFilmService(INet net, IRepository<FilmInfo> filmsCache, string baseUri)
+        public FindFilmService(INet net, IRepository<FilmInfo> filmsCache)
         {
             this.net = net;
             this.filmsCache = filmsCache;
-            BaseUri = baseUri;
         }
 
         public async Task<IEnumerable<FilmInfoDTO>> GetFilm(string filmName)
